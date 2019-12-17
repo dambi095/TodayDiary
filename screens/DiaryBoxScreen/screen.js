@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   FlatList,
-  Switch
+  Switch,
+  Dimensions
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import PropTypes from "prop-types";
@@ -13,6 +14,8 @@ import DiaryBox from "../../components/DiaryBox"
 import Modal from 'react-native-modal';
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "react-native-elements";
+
+const { width, height } = Dimensions.get("window");
 
 const DiaryboxScreen = props => (
   <View style={styles.container}>
@@ -25,7 +28,7 @@ const DiaryboxScreen = props => (
           width: '70%',
           height: '70%'
         }}>
-          <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '45%' }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '45' }}>
             <Text style={styles.titleFont}>일기장을 생성 하세요!</Text>
             <TouchableOpacity
               style={{ paddingTop: 10 }}
@@ -40,11 +43,11 @@ const DiaryboxScreen = props => (
         <>
           {props.myDiary.length !== 0 ? (
             <>
-              <View style={{ height: '50%', alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ alignItems: 'center', justifyContent: 'center', flex:2} }>
                 <Text style={styles.titleFont}>나의 일기</Text>
                 <FlatList
                   data={props.myDiary}
-                  keyExtractor={(item) => item.diary_num}
+                  keyExtractor={(item) => item.diary_num.toString()}
                   refreshing={props.isFetching}
                   onRefresh={props.refresh}
                   renderItem={({ item }) => <DiaryBox {...item} />}
@@ -56,14 +59,13 @@ const DiaryboxScreen = props => (
           <FlatList
             horizontal={true}
             data={props.exDiary}
-            keyExtractor={item => item.diary_num}
+            keyExtractor={item => item.diary_num.toString()}
             refreshing={props.isFetching}
             onRefresh={props.refresh}
             renderItem={({ item }) => <DiaryBox {...item} />}
           />
           {props.exDiary.length < 5 || props.myDiary.length < 1 ? (
             <TouchableOpacity
-              style={{marginBottom:20}}
               onPressOut={props.toggleModal}
             >
               <FontAwesome name={"plus-circle"} size={40} color='grey' />
@@ -94,7 +96,7 @@ const DiaryboxScreen = props => (
             />
           </View>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{ color: 'grey', fontWeight: 'bold', marginBottom:10, marginTop:15, marginLeft:5 }}>교환일기 여부</Text>
+            <Text style={{ color: 'grey', fontWeight: 'bold', marginBottom: 10, marginTop: 15, marginLeft: 5 }}>교환일기 여부</Text>
             <Switch onValueChange={props.handleToggleSwitch}
               value={props.switchValue}
             />
@@ -122,14 +124,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   modalbutton: {
-    width: '50%',
+    width: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,
-    marginBottom:30
+    marginBottom: 30
   },
   modalTextInput: {
     width: 250,
@@ -160,17 +162,17 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginTop: 10
   },
-  modalButtonText:{
+  modalButtonText: {
     fontSize: 18,
     color: '#263238',
     fontWeight: "bold",
   },
-  modalDescText:{
+  modalDescText: {
     fontSize: 18,
     color: '#263238',
     fontWeight: "bold",
     marginBottom: 10,
-    marginTop:20,
+    marginTop: 20,
   }
 });
 

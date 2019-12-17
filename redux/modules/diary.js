@@ -15,10 +15,11 @@ function getDiary() {
     return (dispatch, getState) => {
         const {
             user:{
-                email,
+                profile:{email},
                 token
             }
         } = getState();
+
         return fetch(`${API_URL}/diary/getDiary`, {
             method: "POST",
             headers: {
@@ -37,6 +38,7 @@ function getDiary() {
                 }
             })
             .then(data => {
+                console.log("diary data : " ,data);
                 dispatch(setDiary(data));
             })
             .catch(e => e);
@@ -59,24 +61,9 @@ function reducer(state = initialState, action) {
 function applySetDiary(state, action) {
     const { data } = action;
 
-    // 내일기, 교환일기 구분
-    let ex = [];
-    let my = [];
-
-    if (data) {
-        if (data.diary_type === "exchange") {
-            ex.push(data);
-        } else {
-            my.push(data);
-        }
-
-    }
-
     return {
         ...state,
-        exDiary: ex,
-        myDiary: my,
-        totalDiary: data
+        myDiary: data
     };
 }
 

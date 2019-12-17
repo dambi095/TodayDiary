@@ -1,10 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Image, Dimensions, StatusBar, ActivityIndicator, View } from "react-native";
+import {Dimensions, StatusBar} from "react-native";
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 const LogInScreen = props => (
   <Container>

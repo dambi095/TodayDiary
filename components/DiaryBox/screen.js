@@ -6,12 +6,12 @@ import OptionsMenu from "react-native-options-menu";
 import { Card } from "react-native-elements";
 const MoreIcon = require("../../assets/icon_receiptpay.png");
 
-const { width } = Dimensions.get("window").width;
+const { width } = Dimensions.get("window");
 
 // 일기장 목록 그리기 
 const Diarybox = props => (
   <View>
-    <Card containerStyle={{ width: 200, height: 100 }}>
+    <Card containerStyle={styled.card}>
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           onPressOut={async () => {
@@ -26,8 +26,8 @@ const Diarybox = props => (
             }
           }}
         >
-          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{props.diary_title} </Text>
-          <Text style={{ fontSize: 15, lineHeight: 20 }}>{props.create_date}</Text>
+          <Text style={{ fontSize: 18, fontWeight: 'bold'}}>{props.diary_title} </Text>
+          <Text style={{ fontSize: 15, lineHeight: 20 }}>{props.create_date.substring(0,10)}</Text>
         </TouchableOpacity>
         <OptionsMenu
           button={MoreIcon}
@@ -46,7 +46,7 @@ Diarybox.prototypes = {
   handlePress: PropTypes.func.isRequired
 };
 
-var style = StyleSheet.create({
+var styled = StyleSheet.create({
   boxBorder: {
     flexDirection: 'row',
     borderRadius: 20,
@@ -58,7 +58,6 @@ var style = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
   }
-
 })
 
 export default withNavigation(Diarybox);
