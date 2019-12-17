@@ -43,8 +43,7 @@ const DiaryboxScreen = props => (
         <>
           {props.myDiary.length !== 0 ? (
             <>
-              <View style={{ alignItems: 'center', justifyContent: 'center', flex:2} }>
-                <Text style={styles.titleFont}>나의 일기</Text>
+              <View style={{flex:2} }>
                 <FlatList
                   data={props.myDiary}
                   keyExtractor={(item) => item.diary_num.toString()}
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent:"space-between"
   },
   modalbutton: {
     width: 50,

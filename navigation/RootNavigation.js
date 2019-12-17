@@ -6,14 +6,12 @@ import { Ionicons } from "@expo/vector-icons";
 import WritingScreen from "../screens/WritingDiaryScreen";
 import { TouchableOpacity, Text, View } from "react-native";
 import styled from "styled-components/native";
-// import Modal from "../components/Modal";
-
 const RootNavigation = createStackNavigator(
   {
     Tabs: {
       screen: TabsNavigation,
       navigationOptions: props => ({
-        title: "교환일기",
+        title: "MY DIARY",
         headerTitleStyle: { color: "#263238" },
         headerStyle: { backgroundColor: "#ef9a9a" },
         headerRight: (
