@@ -14,7 +14,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     initApp: () => {
       dispatch(diaryActions.getDiary());
-      // dispatch(diaryActions.getDiaryListForCal());
     }
   };
 };

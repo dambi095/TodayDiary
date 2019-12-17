@@ -28,11 +28,6 @@ const RootNavigation = createStackNavigator(
                 <Ionicons name="ios-contact" size={30} color={"#263238"} />
               </Box>
             </TouchableOpacity>
-            <Modal
-              isModalVisible={props.screenProps.isModalVisible}
-              toggleModal={props.screenProps.toggleModal}
-              profile={props.screenProps.profile}
-            />
           </View>
         )
       })

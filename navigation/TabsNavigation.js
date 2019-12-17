@@ -1,7 +1,7 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import {createBottomTabNavigator} from "react-navigation-tabs";
-import DiaryboxRoute from "../routes/DiaryBoxRoute";
+import DiaryBoxRoute from "../routes/DiaryBoxRoute";
 //import SearchScreen from "../screens/SearchScreen";
 //import CalenderScreen from "../screens/CalenderScreen";
 //import NotificationScreen from "../screens/NotificationScreen";
@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 const TabsNavigation = createBottomTabNavigator(
   {
     Diarybox: {
-      screen: DiaryboxRoute,
+      screen: DiaryBoxRoute,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
           <Ionicons

@@ -59,8 +59,8 @@ class Action extends Component {
             }, 2000)
           }
         } else {
-            Alert.alert("이미 존재하는 계정입니다");
-            this.setState({ isSubmitting: false });
+          Alert.alert("이미 존재하는 계정입니다");
+          this.setState({ isSubmitting: false });
         }
       } else {
         Alert.alert("입력양식을 모두 입력해주세요");
