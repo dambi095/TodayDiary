@@ -78,6 +78,7 @@ function registerCheck(email) {
             .then(response => response.json())
             .then(result => {
                 // 이미 존재할 시 
+                console.log("result",result);
                 if (result > 0) {
                     return true;
                 } else {

@@ -37,7 +37,7 @@ class Action extends Component {
   _changeEmail = text => {
     this.setState({ email: text });
   };
-  
+
   _submit = async () => {
     const { username, password, email, isSubmitting } = this.state;
     const { signUp, registerCheck } = this.props;
@@ -54,15 +54,13 @@ class Action extends Component {
 
           if (signupResult === true) {
             setTimeout(() => {
-              alert("가입이 완료되었습니다!");
+              Alert.alert("가입이 완료되었습니다!");
               this.props.navigation.navigate("LogIn");
             }, 2000)
           }
         } else {
-          if (!signupResult) {
             Alert.alert("이미 존재하는 계정입니다");
             this.setState({ isSubmitting: false });
-          }
         }
       } else {
         Alert.alert("입력양식을 모두 입력해주세요");
