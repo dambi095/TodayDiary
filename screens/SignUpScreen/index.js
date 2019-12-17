@@ -6,6 +6,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     signUp: (username, password, email) => {
       return dispatch(userActions.signUp(email, password, username));
+    },
+    registerCheck: (email) => {
+      return dispatch(userActions.registerCheck(email));
     }
   };
 };

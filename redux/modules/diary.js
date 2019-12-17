@@ -1,14 +1,89 @@
+import { API_URL } from "../../constants";
+import { actionCreators as userActions } from "./user";
+
+const SET_DIARY = "SET_DIARY";
+
+function setDiary(data) {
+    return {
+        type: SET_DIARY,
+        data
+    };
+}
+
+//일기장 목록 가져오기
+function getDiary() {
+    return (dispatch, getState) => {
+        const {
+            user:{
+                email,
+                token
+            }
+        } = getState();
+        return fetch(`${API_URL}/diary/getDiary`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                email
+            })
+        })
+            .then(response => {
+                if (response.status === 403) {
+                    dispatch(userActions.logOut());
+                } else {
+                    return response.json();
+                }
+            })
+            .then(data => {
+                dispatch(setDiary(data));
+            })
+            .catch(e => e);
+    }
+}
+
 const initialState = {
+    myDiary: []
 };
 
 function reducer(state = initialState, action) {
     switch (action.type) {
-      default:
-        return state;
+        case SET_DIARY:
+            return applySetDiary(state, action);
+        default:
+            return state;
     }
-  }
-  
+}
+
+function applySetDiary(state, action) {
+    const { data } = action;
+
+    // 내일기, 교환일기 구분
+    let ex = [];
+    let my = [];
+
+    if (data) {
+        if (data.diary_type === "exchange") {
+            ex.push(data);
+        } else {
+            my.push(data);
+        }
+
+    }
+
+    return {
+        ...state,
+        exDiary: ex,
+        myDiary: my,
+        totalDiary: data
+    };
+}
+
+
 const actionCreators = {
+    getDiary,
+
 };
 
 export { actionCreators };

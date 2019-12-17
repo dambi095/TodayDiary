@@ -28,14 +28,15 @@ class Action extends Component {
   };
   _submit = async () => {
     const { email, password, isSubmitting } = this.state;
-    const { login } = this.props;
+    const { logIn } = this.props;
+
     if (!isSubmitting) {
       if (email && password) {
         this.setState({
           isSubmitting: true
         });
         // redux action
-        const loginResult = await login(email, password);
+        const loginResult = await logIn(email, password);
         if (!loginResult) {
           Alert.alert("잘못된 아이디, 비밀번호 입니다");
           this.setState({ isSubmitting: false });
