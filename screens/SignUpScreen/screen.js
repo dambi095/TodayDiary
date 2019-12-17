@@ -75,6 +75,7 @@ const Input = styled.TextInput`
   border-width: 1;
   border-radius: 10;
   border-color: #ef9a9a;
+  height:30;
 `;
 
 const TouchableOpacity = styled.TouchableOpacity`

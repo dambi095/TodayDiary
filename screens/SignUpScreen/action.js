@@ -40,12 +40,13 @@ class Action extends Component {
   _submit = async () => {
     const { username, password, email, isSubmitting } = this.state;
     const { signUp } = this.props;
+
     if (!isSubmitting) {
       if (username && password && email) {
         this.setState({
           isSubmitting: true
         });
-        const signupResult = await signUp(username, password, email);
+        const signupResult = await signUp(email, password, username);
         if (!signupResult) {
           Alert.alert("이미 존재하는 계정입니다");
           this.setState({ isSubmitting: false });
