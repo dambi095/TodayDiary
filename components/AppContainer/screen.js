@@ -21,8 +21,6 @@ class AppContainer extends Component {
 
     render() {
         const { isLoggedIn, profile } = this.props;
-        console.log("appContainer isLoggedIn :: " + isLoggedIn);
-
         return (
             <View style={styles.container}>
                 <StatusBar hidden={false} />

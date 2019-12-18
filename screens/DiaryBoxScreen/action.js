@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DiaryboxScreen from "./screen";
+import { API_URL } from "../../constants";
 
 class Action extends Component {
   // 타입 검사 
@@ -64,12 +65,24 @@ class Action extends Component {
 
   };
 
+  // 일기장 생성 시 
+  _submitDiaryInfo = async () => {
+    const { submitDiaryInfo } = this.props;
+    const result = await submitDiaryInfo(this.state.diary_title, this.state.diary_type, this.state.explanation);
+    if (result) {
+      alert("일기장 생성이 완료되었습니다");
+      this._toggleModal();
+    } else {
+      alert("다시 시도 해주세요");
+    }
+  }
+
   _toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible, diary_title: null, diary_type: "default", explanation: null, switchValue:false});
+    this.setState({ isModalVisible: !this.state.isModalVisible, diary_title: null, diary_type: "default", explanation: null, switchValue: false });
   }
 
   _reset = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible, diary_title: null, diary_type: "default", explanation: null, switchValue:false});
+    this.setState({ isModalVisible: !this.state.isModalVisible, diary_title: null, diary_type: "default", explanation: null, switchValue: false });
   };
 
   _onTitleChanged = (text) => {

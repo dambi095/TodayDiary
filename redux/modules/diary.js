@@ -14,8 +14,8 @@ function setDiary(data) {
 function getDiary() {
     return (dispatch, getState) => {
         const {
-            user:{
-                profile:{email},
+            user: {
+                profile: { email },
                 token
             }
         } = getState();
@@ -38,10 +38,50 @@ function getDiary() {
                 }
             })
             .then(data => {
-                console.log("diary data : " ,data);
+                console.log("diary data : ", data);
                 dispatch(setDiary(data));
             })
             .catch(e => e);
+    }
+}
+// 일기장 생성 시 
+submitDiaryInfo = (diary_title, diary_type, explanation) => {
+    return (dispatch, getState) => {
+        const {
+            user: {
+                profile: { email },
+                token
+            }
+        } = getState();
+
+        return fetch(`${API_URL}/diary/insertDiaryInfo`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                email,
+                diary_title,
+                diary_type,
+                explanation
+            })
+        })
+            .then(response => {
+                if (response.status === 403) {
+                    dispatch(userActions.logOut());
+                } else {
+                    return response.json();
+                }
+            })
+            .then(async (result) => {
+                if (result > 0) {
+                    await dispatch(getDiary());
+                    return true;
+                } else {
+                    return false;
+                }
+            })
     }
 }
 
@@ -70,7 +110,7 @@ function applySetDiary(state, action) {
 
 const actionCreators = {
     getDiary,
-
+    submitDiaryInfo,
 };
 
 export { actionCreators };
