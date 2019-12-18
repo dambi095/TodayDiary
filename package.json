@@ -28,7 +28,8 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.1",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "expo-image-picker": "~8.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^8.0.0"
