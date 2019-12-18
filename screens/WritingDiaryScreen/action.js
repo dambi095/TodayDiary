@@ -89,7 +89,7 @@ class Action extends Component {
         const result = await insertDiaryContents(this.state.diary_num, this.state.title, this.state.contents, this.state.image);
         
         if (result) {
-            this.props.navigation.navigate("DiaryContentsScreen");
+            this.props.navigation.navigate("DiaryContentScreen");
         }
     }
 
@@ -100,7 +100,7 @@ class Action extends Component {
         const result = updateDiaryContents(this.state.diary_num, this.state.page_num, this.state.title, this.state.contents);
 
         if (result) {
-            this.props.navigation.navigate("DiaryContentsScreen", {
+            this.props.navigation.navigate("DiaryContentScreen", {
                 title: this.state.title,
                 write_date: this.props.diaryContent[0].write_date,
                 nickname: this.props.diaryContent[0].nickname,

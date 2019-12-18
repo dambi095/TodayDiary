@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DiaryboxScreen from "./screen";
-import { API_URL } from "../../constants";
 
 class Action extends Component {
   // 타입 검사 
