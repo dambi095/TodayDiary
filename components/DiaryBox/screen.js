@@ -19,6 +19,7 @@ const Diarybox = props => (
             props.navigation.navigate("DiartListScreen", {
               diary_title: props.diary_title, // 일기장 타이틀 
               diary_num: props.diary_num,
+              diary_type: props.diary_type
             });
           }}
         >
