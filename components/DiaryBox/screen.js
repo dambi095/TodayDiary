@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text, View, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet, Dimensions, Alert } from "react-native";
 import { withNavigation } from "react-navigation";
 import OptionsMenu from "react-native-options-menu";
 import { Card } from "react-native-elements";
@@ -15,19 +15,15 @@ const Diarybox = props => (
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           onPressOut={async () => {
-            const a = await props.handlePress(props.diary_num);
-            if(a){
-              props.navigation.navigate("DiarylistScreen", {
-                diaryList: props.diaryList,
-                diary_title: props.diary_title, // 일기장 타이틀 
-                diary_num: props.diary_num,
-                diary_type: props.diary_type, // 교환일기인지, 기본 일기인지 확인을 위해
-              });
-            }
+            await props.handlePress(props.diary_num, props.email);
+            props.navigation.navigate("DiarylistScreen", {
+              diary_title: props.diary_title, // 일기장 타이틀 
+              diary_num: props.diary_num,
+            });
           }}
         >
-          <Text style={{ fontSize: 18, fontWeight: 'bold'}}>{props.diary_title} </Text>
-          <Text style={{ fontSize: 15, lineHeight: 20 }}>{props.create_date.substring(0,10)}</Text>
+          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{props.diary_title} </Text>
+          <Text style={{ fontSize: 15, lineHeight: 20 }}>{props.create_date.substring(0, 10)}</Text>
         </TouchableOpacity>
         <OptionsMenu
           button={MoreIcon}

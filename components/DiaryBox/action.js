@@ -27,10 +27,9 @@ class Action extends Component {
   }
 
   // 일기장 진입 시 
-  _handlePress = async (diary_num) => {
+  _handlePress = async (diary_num, email) => {
     const { getDiarylist } = this.props;
-    const result = await getDiarylist(diary_num);
-
+    const result = await getDiarylist(diary_num, email);
     // 데이터 로드 성공 시 
     if (result) {
       return true;

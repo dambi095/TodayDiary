@@ -2,12 +2,20 @@ import { API_URL } from "../../constants";
 import { actionCreators as userActions } from "./user";
 
 const SET_DIARY = "SET_DIARY";
+const SET_DIARYLIST = "SET_DIARYLIST";
 
 function setDiary(data) {
     return {
         type: SET_DIARY,
         data
     };
+}
+
+function setDiaryList(diaryList) {
+    return {
+        type: SET_DIARYLIST,
+        diaryList
+    }
 }
 
 //일기장 목록 가져오기
@@ -44,8 +52,9 @@ function getDiary() {
             .catch(e => e);
     }
 }
+
 // 일기장 생성 시 
-submitDiaryInfo = (diary_title, diary_type, explanation) => {
+function submitDiaryInfo(diary_title, diary_type, explanation) {
     return (dispatch, getState) => {
         const {
             user: {
@@ -85,14 +94,52 @@ submitDiaryInfo = (diary_title, diary_type, explanation) => {
     }
 }
 
+// 일기장에 해당하는 일기리스트 가져오기
+function getDiarylist(diary_num, email) {
+    return (dispatch, getState) => {
+        const {
+            user: {
+                token
+            }
+        } = getState();
+
+        return fetch(`${API_URL}/diaryList/getDiaryList`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                email,
+                diary_num
+            })
+        }).then(response => {
+            if (response.status === 403) {
+                dispatch(userActions.logOut());
+            } else {
+                return response.json();
+            }
+        })
+            .then(async (data) => {
+                if (data.length > 0) {
+                    await dispatch(setDiaryList(data));
+                }
+                return true
+            })
+    }
+}
+
 const initialState = {
-    myDiary: []
+    myDiary: [],
+    diaryList: []
 };
 
 function reducer(state = initialState, action) {
     switch (action.type) {
         case SET_DIARY:
             return applySetDiary(state, action);
+        case SET_DIARYLIST:
+            return applySetDiaryList(state, action);
         default:
             return state;
     }
@@ -107,10 +154,19 @@ function applySetDiary(state, action) {
     };
 }
 
+function applySetDiaryList(state, action) {
+    const { diaryList } = action;
+    return {
+        ...state,
+        diaryList: diaryList
+    }
+}
+
 
 const actionCreators = {
     getDiary,
     submitDiaryInfo,
+    getDiarylist
 };
 
 export { actionCreators };

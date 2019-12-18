@@ -12,8 +12,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    initApp: () => {
-      dispatch(diaryActions.getDiary());
+    initApp: async() => {
+      await dispatch(diaryActions.getDiary());
     }
   };
 };

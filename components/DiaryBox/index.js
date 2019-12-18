@@ -7,13 +7,13 @@ const mapStateToProps = (state) => {
     const {
         diary: { diaryList }
     } = state;
-    return { diaryList};
+    return { diaryList };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getDiarylist: (diary_num) => {
-            return dispatch(diaryActions.getDiaryList(diary_num));
+        getDiarylist: (diary_num, email) => {
+            return dispatch(diaryActions.getDiarylist(diary_num, email));
         },
         deleteDiary: (diary_num) => {
             return dispatch(diaryActions.deleteDiary(diary_num));
