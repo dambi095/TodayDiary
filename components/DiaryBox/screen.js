@@ -16,7 +16,7 @@ const Diarybox = props => (
         <TouchableOpacity
           onPressOut={async () => {
             await props.handlePress(props.diary_num, props.email);
-            props.navigation.navigate("DiarylistScreen", {
+            props.navigation.navigate("DiartListScreen", {
               diary_title: props.diary_title, // 일기장 타이틀 
               diary_num: props.diary_num,
             });
