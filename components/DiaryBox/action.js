@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Diarybox from "./screen";
+import { Alert } from "react-native";
 
 class Action extends Component {
   constructor(props) {
@@ -10,11 +10,7 @@ class Action extends Component {
       loadded: false
     }
   }
-
-  static propTypes = {
-    getDiarylist: PropTypes.func.isRequired,
-  };
-
+  
   render() {
     return <Diarybox
       {...this.props}
@@ -33,17 +29,20 @@ class Action extends Component {
     // 데이터 로드 성공 시 
     if (result) {
       return true;
-    } 
+    }
     else {
       return false;
-    }   
+    }
   };
-  
+
 
   // 일기장 삭제 시 
-  _deleteDiary = () => {
+  _deleteDiary = async () => {
     const { deleteDiary } = this.props;
-    deleteDiary(this.props.diary_num);
+    const deleteResult = await deleteDiary(this.props.diary_num);
+    if (deleteResult === true) {
+      Alert.alert(" 일기장이 삭제 되었습니다");
+    }
   }
 
   // 일기장 수정 시 
@@ -52,8 +51,7 @@ class Action extends Component {
   }
 
   // 취소 선택 시 
-  _cancel = () => {
-  }
+  _cancel = () => {}
 }
 
 export default Action;

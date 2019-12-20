@@ -54,7 +54,7 @@ function getDiary() {
                 }
             })
             .then(data => {
-                console.log("diary data : ", data);
+                console.log("getDiary() 데이터 결과 : ", data);
                 dispatch(setDiary(data));
             })
             .catch(e => e);
@@ -217,6 +217,46 @@ function insertDiaryContents(diary_num, title, contents, image) {
     }
 }
 
+// 일기장 삭제하기 
+function deleteDiary(diary_num) {
+    return (dispatch, getState) => {
+        const {
+            user: {
+                token
+            }
+        } = getState();
+
+        return fetch(`${API_URL}/diary/deleteDiary`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                diary_num
+            })
+        })
+            .then(response => {
+                if (response.status === 403) {
+                    dispatch(userActions.logOut());
+                } else {
+                    return response.json();
+                }
+            })
+            .then(async(result) => {
+                console.log("result", result);
+                if (result > 0) {
+                    await dispatch(getDiary());
+                    console.log("????삭제?");
+                    return true
+                } else {
+                    return false;
+                }
+            })
+    }
+}
+
+
 const initialState = {
     myDiary: [],
     diaryList: [],
@@ -266,7 +306,8 @@ const actionCreators = {
     submitDiaryInfo,
     getDiarylist,
     insertDiaryContents,
-    getDiaryContent
+    getDiaryContent,
+    deleteDiary
 };
 
 export { actionCreators };
