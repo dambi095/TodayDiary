@@ -103,10 +103,11 @@ function submitDiaryInfo(diary_title, diary_type, explanation) {
 }
 
 // 일기장에 해당하는 일기리스트 가져오기
-function getDiarylist(diary_num, email) {
+function getDiarylist(diary_num) {
     return (dispatch, getState) => {
         const {
             user: {
+                profile: { email },
                 token
             }
         } = getState();
@@ -130,9 +131,7 @@ function getDiarylist(diary_num, email) {
                 }
             })
             .then(async (data) => {
-                if (data.length > 0) {
-                    await dispatch(setDiaryList(data));
-                }
+                await dispatch(setDiaryList(data));
                 return true
             })
     }
@@ -206,7 +205,6 @@ function insertDiaryContents(diary_num, title, contents, image) {
                 }
             })
             .then(async (result) => {
-                console.log("data :", result);
                 if (result > 0) {
                     await dispatch(getDiaryContent(diary_num, JSON.stringify(result)))
                     return true;
@@ -243,11 +241,10 @@ function deleteDiary(diary_num) {
                     return response.json();
                 }
             })
-            .then(async(result) => {
+            .then(async (result) => {
                 console.log("result", result);
                 if (result > 0) {
                     await dispatch(getDiary());
-                    console.log("????삭제?");
                     return true
                 } else {
                     return false;
@@ -289,7 +286,7 @@ function applySetDiaryList(state, action) {
     const { diaryList } = action;
     return {
         ...state,
-        diaryList
+        diaryList: diaryList
     }
 }
 

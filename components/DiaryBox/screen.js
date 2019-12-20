@@ -15,12 +15,14 @@ const Diarybox = props => (
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           onPressOut={async () => {
-            await props.handlePress(props.diary_num, props.email);
-            props.navigation.navigate("DiartListScreen", {
-              diary_title: props.diary_title, // 일기장 타이틀 
-              diary_num: props.diary_num,
-              diary_type: props.diary_type
-            });
+            const result = await props.handlePress(props.diary_num, props.email);
+            if(result){
+              props.navigation.navigate("DiartListScreen", {     
+                diary_title: props.diary_title, // 일기장 타이틀 
+                diary_num: props.diary_num,
+                diary_type: props.diary_type
+              });
+            }
           }}
         >
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{props.diary_title} </Text>

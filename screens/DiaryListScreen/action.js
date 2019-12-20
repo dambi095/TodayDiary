@@ -9,11 +9,9 @@ class Action extends Component {
       navigation: {
         state: {
           params: {
-            diaryList,
             diary_title,
             diary_num,
-            diary_type,
-            diaryContent
+            diary_type
           }
         }
       }
@@ -23,27 +21,9 @@ class Action extends Component {
       diary_title, // 일기장 제목을 나타내주기 위해 
       diary_num, // 일기장 번호 넘겨주기 위해
       diary_type,
-      myDiaryList: (diaryList) ? diaryList : [],
-      diaryContent: (diaryContent) ? diaryContent : [],
-      isFetching: false,
+      isFetching: false
     };
   }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if ((nextProps.diaryList.length !== prevState.myDiaryList.length)) {
-      console.log('getDerivedStateFromProps() List Update...');
-      return {
-        ...this.state,
-        isFetching: false
-      }
-    }
-    else {
-      return {
-        ...this.state
-      }
-    }
-  }
-
 
   render() {
     return <DiartListScreen

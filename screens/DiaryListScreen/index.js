@@ -12,13 +12,13 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         getDiaryContent: (diary_num, page_num) => {
             return dispatch(diaryActions.getDiaryContent(diary_num, page_num));
         },
         getDiarylist: (diary_num) => {
-            return dispatch(diaryActions.getDiaryList(diary_num));
+            return dispatch(diaryActions.getDiarylist(diary_num));
         },
     };
 };

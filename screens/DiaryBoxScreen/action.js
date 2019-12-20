@@ -39,7 +39,7 @@ class Action extends Component {
     const result = await submitDiaryInfo(this.state.diary_title, this.state.diary_type, this.state.explanation);
     if (result) {
       this._toggleModal();
-      await alert("일기장 생성이 완료되었습니다");
+     alert("일기장 생성이 완료되었습니다");
     } else {
       alert("다시 시도 해주세요");
     }
