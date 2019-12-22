@@ -18,8 +18,7 @@ class Action extends Component {
 
         this.state = {
             title,
-            image:null,
-            focused_title: '',
+            image: null,
             isModalVisible: null,
             contents: contents,
             diary_num,
@@ -42,7 +41,7 @@ class Action extends Component {
     }
 
     componentDidMount() {
-      this.getPermissionAsync();
+        this.getPermissionAsync();
     }
 
     _pickImage = async () => {
@@ -79,7 +78,7 @@ class Action extends Component {
     // 글 내용 입력 시 
     _onContentChanged = (value) => {
         this.setState({
-            contents: value 
+            contents: value
         })
     }
 
@@ -87,7 +86,7 @@ class Action extends Component {
     _insertContents = async () => {
         const { insertDiaryContents } = this.props;
         const result = await insertDiaryContents(this.state.diary_num, this.state.title, this.state.contents, this.state.image);
-        
+
         if (result) {
             this.props.navigation.navigate("DiaryContentScreen");
         }

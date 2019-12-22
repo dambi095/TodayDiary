@@ -9,8 +9,7 @@ class Action extends Component {
     diary_title: null,
     diary_type: 'default',
     switchValue: false,
-    myDiaryData: this.props.myDiary,
-    exDiaryData: this.props.exDiary
+    myDiaryData: (this.props.myDiary) ? this.props.myDiary : []
   };
 
   render() {
@@ -39,7 +38,6 @@ class Action extends Component {
     const result = await submitDiaryInfo(this.state.diary_title, this.state.diary_type, this.state.explanation);
     if (result) {
       this._toggleModal();
-     alert("일기장 생성이 완료되었습니다");
     } else {
       alert("다시 시도 해주세요");
     }

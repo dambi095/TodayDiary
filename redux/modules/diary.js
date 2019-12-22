@@ -19,10 +19,10 @@ function setDiaryList(diaryList) {
     }
 }
 
-function setContents(contents) {
+function setContents(diaryContent) {
     return {
         type: SET_CONTENTS,
-        contents
+        diaryContent
     }
 }
 
@@ -242,7 +242,6 @@ function deleteDiary(diary_num) {
                 }
             })
             .then(async (result) => {
-                console.log("result", result);
                 if (result > 0) {
                     await dispatch(getDiary());
                     return true
@@ -253,11 +252,10 @@ function deleteDiary(diary_num) {
     }
 }
 
-
 const initialState = {
     myDiary: [],
     diaryList: [],
-    contents: []
+    diaryContent: []
 };
 
 function reducer(state = initialState, action) {
@@ -291,10 +289,10 @@ function applySetDiaryList(state, action) {
 }
 
 function applySetDiaryContent(state, action) {
-    const { contents } = action;
+    const { diaryContent } = action;
     return {
         ...state,
-        contents
+        diaryContent
     }
 }
 
