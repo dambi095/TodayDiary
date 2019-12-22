@@ -24,7 +24,7 @@ const DiaryContentScreen = props => (
                             title: props.title,
                             contents: contents
                         });
-                    }, () => { props.deleteContent(props.diary_num.toString(), props.page_num.toString()) }, () => { }]}
+                    }, () => { props.deleteContent(props.diaryContent[0].diary_num.toString(), props.diaryContent[0].page_num.toString()) }, () => { }]}
                 />
             </View>
             <View style={styles.lineStyle} />

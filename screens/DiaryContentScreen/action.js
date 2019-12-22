@@ -13,11 +13,10 @@ class Action extends Component {
 
   // 컨텐츠 삭제 시 
   _deleteContent = async (_diary_num, _page_num) => {
-    console.log("deleteContent()");
     const { deleteDiaryContents } = this.props;
     const result = await deleteDiaryContents(_diary_num, _page_num);
     if (result) {
-      this.props.navigation.navigate("DiarylistScreen");
+      this.props.navigation.navigate("DiaryListScreen");
     }
   }
 
