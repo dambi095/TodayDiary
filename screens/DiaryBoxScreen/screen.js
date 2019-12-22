@@ -28,7 +28,7 @@ const DiaryboxScreen = props => (
           width: '70%',
           height: '70%'
         }}>
-          <View style={{ alignItems: 'center'}}>
+          <View style={{ alignItems: 'center' }}>
             <Text style={styles.titleFont}>일기장을 생성 하세요!</Text>
             <TouchableOpacity
               style={{ paddingTop: 10 }}
@@ -43,13 +43,16 @@ const DiaryboxScreen = props => (
         <>
           {props.myDiary.length !== 0 ? (
             <>
-              <View style={{flex:2} }>
+              <View style={{ flex: 2 }}>
                 <FlatList
                   data={props.myDiary}
                   keyExtractor={(item) => item.diary_num.toString()}
                   refreshing={props.isFetching}
                   onRefresh={props.refresh}
-                  renderItem={({ item }) => <DiaryBox {...item} />}
+                  renderItem={({ item }) => <DiaryBox
+                    {...item}
+                    modifyModal={props.modifyModal} />
+                  }
                 />
               </View>
             </>
@@ -61,7 +64,10 @@ const DiaryboxScreen = props => (
             keyExtractor={item => item.diary_num.toString()}
             refreshing={props.isFetching}
             onRefresh={props.refresh}
-            renderItem={({ item }) => <DiaryBox {...item} />}
+            renderItem={({ item }) => <DiaryBox
+              {...item}
+              modifyModal={props.modifyModal} />
+            }
           />
           {props.exDiary.length < 5 || props.myDiary.length < 1 ? (
             <TouchableOpacity
@@ -101,11 +107,19 @@ const DiaryboxScreen = props => (
             >
               <Text style={styles.modalText}>취소</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPressOut={props.submitDiaryInfo}
-              style={styles.modalbutton}
-            >
-              <Text style={styles.modalText}>확인</Text>
-            </TouchableOpacity>
+            {props.diary_title !== "" ? (
+              <TouchableOpacity onPressOut={props.submitDiaryInfo}
+                style={styles.modalbutton}
+              >
+                <Text style={styles.modalText}>수정</Text>
+              </TouchableOpacity>
+            ) : (
+                <TouchableOpacity onPressOut={props.submitDiaryInfo}
+                  style={styles.modalbutton}
+                >
+                  <Text style={styles.modalText}>확안</Text>
+                </TouchableOpacity>)
+            }
           </View>
         </View>
       </Modal>
@@ -118,7 +132,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent:"center"
+    justifyContent: "center"
   },
   modalbutton: {
     width: 50,

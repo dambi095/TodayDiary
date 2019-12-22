@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Diarybox from "./screen";
 import { Alert } from "react-native";
-
 class Action extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +46,8 @@ class Action extends Component {
 
   // 일기장 수정 시 
   _editDiaryInfo = () => {
-    // const { updateDiaryInfo } = this.props;
+    const { modifyModal, diary_title, explanation} = this.props;
+    modifyModal(diary_title, explanation);
   }
 
   // 취소 선택 시 

@@ -4,6 +4,7 @@ import { Text, View, TouchableOpacity, StyleSheet, Dimensions, Alert } from "rea
 import { withNavigation } from "react-navigation";
 import OptionsMenu from "react-native-options-menu";
 import { Card } from "react-native-elements";
+
 const MoreIcon = require("../../assets/icon_receiptpay.png");
 
 const { width } = Dimensions.get("window");

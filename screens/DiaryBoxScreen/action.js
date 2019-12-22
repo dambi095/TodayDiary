@@ -23,6 +23,7 @@ class Action extends Component {
         onExplanationChanged={this._onExplanationChanged}
         submitDiaryInfo={this._submitDiaryInfo}
         handleToggleSwitch={this._handleToggleSwitch}
+        modifyModal={this._modifyModal}
       />
     );
   }
@@ -44,11 +45,17 @@ class Action extends Component {
   }
 
   _toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible, diary_title: null, diary_type: "default", explanation: null, switchValue: false });
+    this.setState({ isModalVisible: !this.state.isModalVisible, diary_title: "", diary_type: "default", explanation: "", switchValue: false });
   }
 
-  _reset = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible, diary_title: null, diary_type: "default", explanation: null, switchValue: false });
+  _modifyModal = (diary_title, explanation) => {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible,
+      diary_title,
+      diary_type: "default",
+      explanation,
+      switchValue: false
+    });
   };
 
   _onTitleChanged = (text) => {
