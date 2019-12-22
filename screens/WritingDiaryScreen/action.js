@@ -97,7 +97,6 @@ class Action extends Component {
         const result = updateDiaryContents(this.state.diary_num, this.state.page_num, this.state.title, this.state.contents);
 
         if (result) {
-            this.props.navigation.goback();
             this.props.navigation.navigate("DiaryContentScreen");
         }
     }

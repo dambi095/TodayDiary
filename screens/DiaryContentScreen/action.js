@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DiaryContentScreen from "./screen";
 
 class Action extends Component {
+  
   render() {
     return <DiaryContentScreen
       {...this.props}

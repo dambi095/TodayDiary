@@ -18,11 +18,8 @@ const DiaryContentScreen = props => (
                     buttonStyle={{ width: 20, height: 20, resizeMode: "contain" }}
                     options={["수정", "삭제", "취소"]}
                     actions={[() => {
-                        props.navigation.navigate("WritingDiaryScreen", {
-                            diary_num: props.diary_num,
-                            page_num: props.page_num,
-                            title: props.title,
-                            contents: contents
+                        props.navigation.navigate("WritingScreen", {
+                            diary_num: props.diaryContent[0].diary_num
                         });
                     }, () => { props.deleteContent(props.diaryContent[0].diary_num.toString(), props.diaryContent[0].page_num.toString()) }, () => { }]}
                 />

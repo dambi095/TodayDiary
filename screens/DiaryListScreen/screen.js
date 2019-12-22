@@ -24,7 +24,7 @@ const DiaryListScreen = props => (
             <TouchableOpacity onPressOut={ async() => {
               const result = await props.getDiaryContent(item.diary_num.toString(), item.page_num.toString());
             if(result){
-                props.navigation.navigate("DiaryContentScreen");
+                props.navigation.navigate("DiaryContentScreen", item.diary_num.toString());
               }
             }}>
               <View style={{ flexDirection: 'row', marginTop:5 }}>
@@ -38,7 +38,7 @@ const DiaryListScreen = props => (
           <TouchableOpacity
               style={{marginBottom:'30%'}}
               onPressOut={() => {
-                props.navigation.navigate("WritingDiaryScreen", {
+                props.navigation.navigate("WritingScreen", {
                   diary_num: props.diary_num,
                 });
               }}>
@@ -57,7 +57,7 @@ const DiaryListScreen = props => (
             <TouchableOpacity
               style={{ paddingTop: 10 }}
               onPressOut={() => {
-                props.navigation.navigate("WritingDiaryScreen", {
+                props.navigation.navigate("WritingScreen", {
                   diary_num: props.diary_num,
                 });
               }}>

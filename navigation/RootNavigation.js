@@ -3,7 +3,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import TabsNavigation from "./TabsNavigation";
 import { Ionicons } from "@expo/vector-icons";
-import WritingScreen from "../screens/WritingDiaryScreen";
+import WritingDiaryScreen from "../screens/WritingDiaryScreen";
 import { TouchableOpacity, Text, View } from "react-native";
 import styled from "styled-components/native";
 const RootNavigation = createStackNavigator(
@@ -12,8 +12,6 @@ const RootNavigation = createStackNavigator(
       screen: TabsNavigation,
       navigationOptions: props => ({
         title: "MY DIARY",
-        headerTitleStyle: { color: "#263238" },
-        headerStyle: { backgroundColor: "#ef9a9a" },
         headerRight: (
           <View>
             <TouchableOpacity>
@@ -26,7 +24,7 @@ const RootNavigation = createStackNavigator(
       })
     },
     WritingScreen: {
-      screen: WritingScreen,
+      screen: WritingDiaryScreen,
       navigationOptions: {
         title: "글 작성"
       }

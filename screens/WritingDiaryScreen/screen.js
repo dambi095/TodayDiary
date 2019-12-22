@@ -20,12 +20,12 @@ const WritingDiaryScreen = props => {
                     )}
             </TouchableWithoutFeedback>
             <KeyboardAvoidingView enabled style={{ flex: 1 }}>
-                <TextInput maxLength={20} 
-                placeholder=" 제목을 입력해주세요 (최대 20자)" 
-                style={{width:width}}
-                value={props.title}
-                onChangeText={props.onTitleChanged}
-                 />
+                <TextInput maxLength={20}
+                    placeholder=" 제목을 입력해주세요 (최대 20자)"
+                    style={{ width: width }}
+                    value={props.title}
+                    onChangeText={props.onTitleChanged}
+                />
                 <TextInput maxLength={250}
                     multiline={true}
                     numberOfLines={2}
@@ -39,9 +39,15 @@ const WritingDiaryScreen = props => {
                 <TouchableOpacity onPressOut={() => props.navigation.goBack()}>
                     <Text>취소</Text>
                 </TouchableOpacity>
+                {props.diaryContent[0].contents ? (
+                    <TouchableOpacity onPressOut={props.insertContents}>
+                        <Text>등록</Text>
+                    </TouchableOpacity>
+                ) : (
                 <TouchableOpacity onPressOut={props.insertContents}>
-                    <Text>등록</Text>
-                </TouchableOpacity>
+                    <Text>수정</Text>
+                </TouchableOpacity>)}
+
             </View>
         </View>
     )
