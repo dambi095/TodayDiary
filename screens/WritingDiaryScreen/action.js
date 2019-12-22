@@ -3,6 +3,7 @@ import WritingDiaryScreen from './screen'
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+import { Alert } from "react-native";
 
 class Action extends Component {
 
@@ -84,11 +85,18 @@ class Action extends Component {
     // 글쓰기 저장 
     _insertContents = async () => {
         const { insertDiaryContents } = this.props;
-        const result = await insertDiaryContents(this.state.diary_num, this.state.title, this.state.contents, this.state.image);
 
-        if (result) {
-            this.props.navigation.navigate("DiaryContentScreen");
+        if(this.state.title !== "" && this.state.contents !== ""){
+            const result = await insertDiaryContents(this.state.diary_num, this.state.title, this.state.contents, this.state.image);
+
+            if (result) {
+                this.props.navigation.navigate("DiaryContentScreen");
+            }
         }
+        else {
+            Alert.alert("제목 또는 내용을 입력해주세요")
+        }
+
     }
 
     // 컨텐츠 수정 시 
