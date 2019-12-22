@@ -73,7 +73,6 @@ class Action extends Component {
 
   // 다이어리 수정하기
   _editDiaryInfo = async () => {
-    console.log("_eidtDiaryInfo ()");
     const { updateDiaryInfo } = this.props;
     const result = await updateDiaryInfo(this.state.diary_title, this.state.explanation, this.state.diary_num)
     if (result) {

@@ -51,9 +51,6 @@ class Action extends Component {
             aspect: [4, 3],
             quality: 1
         });
-
-        console.log(result);
-
         if (!result.cancelled) {
             this.setState({ image: result.uri });
         }
@@ -86,7 +83,7 @@ class Action extends Component {
     _insertContents = async () => {
         const { insertDiaryContents } = this.props;
 
-        if(this.state.title !== "" && this.state.contents !== ""){
+        if (this.state.title !== "" && this.state.contents !== "") {
             const result = await insertDiaryContents(this.state.diary_num, this.state.title, this.state.contents, this.state.image);
 
             if (result) {
@@ -100,7 +97,7 @@ class Action extends Component {
     }
 
     // 컨텐츠 수정 시 
-    _changeContent = async() => {
+    _changeContent = async () => {
         const { updateDiaryContents } = this.props;
         const result = updateDiaryContents(this.state.diary_num, this.state.page_num, this.state.title, this.state.contents);
 

@@ -54,7 +54,6 @@ function getDiary() {
                 }
             })
             .then(data => {
-                console.log("getDiary() 데이터 결과 : ", data);
                 dispatch(setDiary(data));
             })
             .catch(e => e);
@@ -181,8 +180,6 @@ function insertDiaryContents(diary_num, title, contents, image) {
                 token
             }
         } = getState();
-
-        console.log(" diary_num ", diary_num, title, contents, image, email, token)
         return fetch(`${API_URL}/diaryList/insertContents`, {
             method: "POST",
             headers: {
@@ -254,7 +251,6 @@ function deleteDiary(diary_num) {
 
 // 일기 삭제하기 
 function deleteDiaryContents(diary_num, page_num) {
-    console.log("deleteDiaryContents()",diary_num);
     return (dispatch, getState) => {
         const {
             user: {
@@ -282,7 +278,6 @@ function deleteDiaryContents(diary_num, page_num) {
             })
             .then(async (result) => {
                 if (result > 0) {
-                    console.log("???", result);
                     await dispatch(getDiarylist(diary_num));
                     return true
                 } else {
@@ -294,7 +289,6 @@ function deleteDiaryContents(diary_num, page_num) {
 
 // 일기장 수정하기 
 function updateDiaryInfo(diary_title, explanation, diary_num) {
-    console.log("updateDiaryInfo()");
     return (dispatch, getState) => {
         const {
             user: {
@@ -309,7 +303,7 @@ function updateDiaryInfo(diary_title, explanation, diary_num) {
                 Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
-                diary_title, 
+                diary_title,
                 explanation,
                 diary_num
             })
@@ -322,8 +316,6 @@ function updateDiaryInfo(diary_title, explanation, diary_num) {
                 }
             })
             .then(async (result) => {
-
-                console.log("update", result);
                 if (result > 0) {
                     await dispatch(getDiary());
                     return true
@@ -331,7 +323,7 @@ function updateDiaryInfo(diary_title, explanation, diary_num) {
                     return false;
                 }
             })
-        }
+    }
 }
 
 const initialState = {

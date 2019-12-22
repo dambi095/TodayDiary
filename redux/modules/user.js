@@ -37,7 +37,6 @@ function saveToken(token) {
 /* API Actions */
 // 회원가입
 function signUp(email, password, username) {
-    console.log(`signUp email: ${email} password : ${password} username : ${username}`);
     return dispatch => {
         return fetch(`${API_URL}/user/insertUser`, {
             method: "POST",
@@ -53,7 +52,6 @@ function signUp(email, password, username) {
             .then(response => response.json())
             .then(result => {
                 if (result > 0) {
-                    console.log(" *-*-*-*-* signUp API Success result : ", result);
                     return true
                 } else {
                     return false
@@ -64,7 +62,6 @@ function signUp(email, password, username) {
 
 // 가입된 유저인지 체크하기 
 function registerCheck(email) {
-    console.log(`registerCheck email: ${email}`);
     return dispatch => {
         return fetch(`${API_URL}/user/registerCheck`, {
             method: "POST",
@@ -89,7 +86,6 @@ function registerCheck(email) {
 
 // 로그인 하기 
 function logIn(email, password) {
-    console.log(`login email : ${email} `);
     return dispatch => {
         return fetch(`${API_URL}/user/logIn`, {
             method: "POST",
@@ -152,7 +148,6 @@ function applySetUser(state, action) {
 }
 
 async function applyLogOut(state, action) {
-    console.log(AsyncStorage.getAllKeys());
     await AsyncStorage.clear();
     return {
         ...state,
