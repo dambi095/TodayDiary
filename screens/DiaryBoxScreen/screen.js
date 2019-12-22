@@ -107,8 +107,8 @@ const DiaryboxScreen = props => (
             >
               <Text style={styles.modalText}>취소</Text>
             </TouchableOpacity>
-            {props.diary_title !== "" ? (
-              <TouchableOpacity onPressOut={props.submitDiaryInfo}
+            {props.diary_num !== "" ? (
+              <TouchableOpacity onPressOut={props.editDiaryInfo}
                 style={styles.modalbutton}
               >
                 <Text style={styles.modalText}>수정</Text>
@@ -117,7 +117,7 @@ const DiaryboxScreen = props => (
                 <TouchableOpacity onPressOut={props.submitDiaryInfo}
                   style={styles.modalbutton}
                 >
-                  <Text style={styles.modalText}>확안</Text>
+                  <Text style={styles.modalText}>확인</Text>
                 </TouchableOpacity>)
             }
           </View>

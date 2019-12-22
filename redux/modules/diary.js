@@ -292,6 +292,48 @@ function deleteDiaryContents(diary_num, page_num) {
     }
 }
 
+// 일기장 수정하기 
+function updateDiaryInfo(diary_title, explanation, diary_num) {
+    console.log("updateDiaryInfo()");
+    return (dispatch, getState) => {
+        const {
+            user: {
+                token
+            }
+        } = getState();
+
+        return fetch(`${API_URL}/diary/updateDiaryInfo`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                diary_title, 
+                explanation,
+                diary_num
+            })
+        })
+            .then(response => {
+                if (response.status === 403) {
+                    dispatch(userActions.logOut());
+                } else {
+                    return response.json();
+                }
+            })
+            .then(async (result) => {
+
+                console.log("update", result);
+                if (result > 0) {
+                    await dispatch(getDiary());
+                    return true
+                } else {
+                    return false;
+                }
+            })
+        }
+}
+
 const initialState = {
     myDiary: [],
     diaryList: [],
@@ -343,7 +385,8 @@ const actionCreators = {
     insertDiaryContents,
     getDiaryContent,
     deleteDiary,
-    deleteDiaryContents
+    deleteDiaryContents,
+    updateDiaryInfo
 };
 
 export { actionCreators };

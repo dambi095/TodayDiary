@@ -8,6 +8,7 @@ class Action extends Component {
     explanation: null,
     diary_title: null,
     diary_type: 'default',
+    diary_num: "",
     switchValue: false,
     myDiaryData: (this.props.myDiary) ? this.props.myDiary : []
   };
@@ -24,10 +25,12 @@ class Action extends Component {
         submitDiaryInfo={this._submitDiaryInfo}
         handleToggleSwitch={this._handleToggleSwitch}
         modifyModal={this._modifyModal}
+        editDiaryInfo={this._editDiaryInfo}
       />
     );
   }
 
+  // 다이어리 리스트 업데이트 
   _refresh = async () => {
     const { getDiary } = this.props;
     await getDiary();
@@ -44,28 +47,51 @@ class Action extends Component {
     }
   }
 
+  // 모달 오픈
   _toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible, diary_title: "", diary_type: "default", explanation: "", switchValue: false });
+    this.setState({
+      isModalVisible: !this.state.isModalVisible,
+      diary_title: "",
+      diary_type: "default",
+      diary_num: "",
+      explanation: "",
+      switchValue: false
+    });
   }
 
-  _modifyModal = (diary_title, explanation) => {
+  // 일기장 수정 시 모달 오픈 
+  _modifyModal = (diary_title, explanation, diary_num) => {
     this.setState({
       isModalVisible: !this.state.isModalVisible,
       diary_title,
       diary_type: "default",
+      diary_num,
       explanation,
       switchValue: false
     });
   };
 
+  // 다이어리 수정하기
+  _editDiaryInfo = async () => {
+    console.log("_eidtDiaryInfo ()");
+    const { updateDiaryInfo } = this.props;
+    const result = await updateDiaryInfo(this.state.diary_title, this.state.explanation, this.state.diary_num)
+    if (result) {
+      this._toggleModal();
+    }
+  }
+
+  // 타이틀 입력 시
   _onTitleChanged = (text) => {
     this.setState({ diary_title: text });
   }
 
+  // 설명 입력 시 
   _onExplanationChanged = (text) => {
     this.setState({ explanation: text });
   }
 
+  // 교환일기 여부 설정 시 
   _handleToggleSwitch = () => {
     this.setState({
       switchValue: !this.state.switchValue

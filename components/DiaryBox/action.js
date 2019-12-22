@@ -9,7 +9,7 @@ class Action extends Component {
       loadded: false
     }
   }
-  
+
   render() {
     return <Diarybox
       {...this.props}
@@ -45,13 +45,14 @@ class Action extends Component {
   }
 
   // 일기장 수정 시 
-  _editDiaryInfo = () => {
-    const { modifyModal, diary_title, explanation} = this.props;
-    modifyModal(diary_title, explanation);
+  _editDiaryInfo = async() => {
+    const { modifyModal, diary_title, explanation, diary_num } = this.props;
+    modifyModal(diary_title, explanation, diary_num);
+
   }
 
   // 취소 선택 시 
-  _cancel = () => {}
+  _cancel = () => { }
 }
 
 export default Action;
