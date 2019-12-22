@@ -11,18 +11,17 @@ class Action extends Component {
         const {
             navigation: {
                 state: {
-                    params: { diary_num, page_num, title, contents }
+                    params: { diary_num }
                 }
             }
         } = props;
 
         this.state = {
-            title,
+            title: "",
             image: null,
             isModalVisible: null,
-            contents: contents,
+            contents: "",
             diary_num,
-            page_num,
         };
     }
 
@@ -93,20 +92,13 @@ class Action extends Component {
     }
 
     // 컨텐츠 수정 시 
-    _changeContent = () => {
-        console.log("changeContent()");
+    _changeContent = async() => {
         const { updateDiaryContents } = this.props;
         const result = updateDiaryContents(this.state.diary_num, this.state.page_num, this.state.title, this.state.contents);
 
         if (result) {
-            this.props.navigation.navigate("DiaryContentScreen", {
-                title: this.state.title,
-                write_date: this.props.diaryContent[0].write_date,
-                nickname: this.props.diaryContent[0].nickname,
-                page_num: this.props.diaryContent[0].page_num,
-                diary_num: this.state.diary_num,
-                diaryContent: ''
-            });
+            this.props.navigation.goback();
+            this.props.navigation.navigate("DiaryContentScreen");
         }
     }
 

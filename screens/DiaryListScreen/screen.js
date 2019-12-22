@@ -10,7 +10,7 @@ import { Card } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
 
 // 일기 리스트 목록 그리기 
-const DiartListScreen = props => (
+const DiaryListScreen = props => (
   <View style={{ alignItems: 'center', justifyContent: 'center' }}>
     <Text style={styles.titleFont}>{props.diary_title}</Text>
     {props.diaryList.length !== 0 ?
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DiartListScreen;
+export default DiaryListScreen;

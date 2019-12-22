@@ -1,6 +1,6 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
-import {createBottomTabNavigator} from "react-navigation-tabs";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import DiaryBoxRoute from "../routes/DiaryBoxRoute";
 import { Ionicons } from "@expo/vector-icons";
 

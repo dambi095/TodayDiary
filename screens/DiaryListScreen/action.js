@@ -1,6 +1,6 @@
   
 import React, { Component } from "react";
-import DiartListScreen from "./screen";
+import DiaryListScreen from "./screen";
 
 class Action extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Action extends Component {
   }
 
   render() {
-    return <DiartListScreen
+    return <DiaryListScreen
       {...this.props}
       {...this.state}
       getDiaryContents={this._getDiaryContents}

@@ -23,8 +23,8 @@ const WritingDiaryScreen = props => {
                 <TextInput maxLength={20} 
                 placeholder=" 제목을 입력해주세요 (최대 20자)" 
                 style={{width:width}}
-                 value={props.title}
-                 onChangeText={props.onTitleChanged}
+                value={props.title}
+                onChangeText={props.onTitleChanged}
                  />
                 <TextInput maxLength={250}
                     multiline={true}

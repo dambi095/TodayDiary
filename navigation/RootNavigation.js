@@ -16,12 +16,7 @@ const RootNavigation = createStackNavigator(
         headerStyle: { backgroundColor: "#ef9a9a" },
         headerRight: (
           <View>
-            <TouchableOpacity
-              onPressOut={() => {
-                //console.log(props);
-                props.screenProps.toggleModal();
-              }}
-            >
+            <TouchableOpacity>
               <Box>
                 <Ionicons name="ios-contact" size={30} color={"#263238"} />
               </Box>
