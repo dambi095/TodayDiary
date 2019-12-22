@@ -24,12 +24,7 @@ const DiartListScreen = props => (
             <TouchableOpacity onPressOut={ async() => {
               const result = await props.getDiaryContent(item.diary_num.toString(), item.page_num.toString());
             if(result){
-                props.navigation.navigate("DiaryContentScreen", {
-                  title: item.title,
-                  write_date: item.write_date,
-                  page_num: item.page_num,
-                  diary_num: item.diary_num,
-                });
+                props.navigation.navigate("DiaryContentScreen");
               }
             }}>
               <View style={{ flexDirection: 'row', marginTop:5 }}>
