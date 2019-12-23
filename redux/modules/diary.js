@@ -240,7 +240,7 @@ function deleteDiary(diary_num) {
             })
             .then(async (result) => {
                 if (result > 0) {
-                    await dispatch(getDiary());
+                    await dispatch(getDiarylist(diary_num));
                     return true
                 } else {
                     return false;
@@ -326,6 +326,49 @@ function updateDiaryInfo(diary_title, explanation, diary_num) {
     }
 }
 
+// 일기 내용 수정하기
+function updateDiaryContents(diary_num, page_num, title, contents, image) {
+    return (dispatch, getState) => {
+        const {
+            user: {
+                token
+            }
+        } = getState();
+
+        return fetch(`${API_URL}/diaryList/updateDiaryContents`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                page_num,
+                title,
+                diary_num,
+                contents,
+                image
+            })
+        })
+            .then(response => {
+                if (response.status === 403) {
+                    dispatch(userActions.logOut());
+                } else {
+                    return response.json();
+                }
+            })
+            .then(async (result) => {
+                if (result > 0) {
+                    console.log(" update result : ", result);
+                    await dispatch(getDiarylist(diary_num));
+                    await dispatch(getDiaryContent(diary_num, page_num));
+                    return true
+                } else {
+                    return false;
+                }
+            })
+    }
+}
+
 const initialState = {
     myDiary: [],
     diaryList: [],
@@ -378,7 +421,8 @@ const actionCreators = {
     getDiaryContent,
     deleteDiary,
     deleteDiaryContents,
-    updateDiaryInfo
+    updateDiaryInfo,
+    updateDiaryContents
 };
 
 export { actionCreators };

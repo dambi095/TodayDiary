@@ -8,7 +8,7 @@ const WritingDiaryScreen = props => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <TouchableWithoutFeedback style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} onPress={Keyboard.dismiss}>
-                {props.image !== null ? (
+                {props.image !== null && props.image !== undefined? (
                     <View>
                         {props.image &&
                             <Image source={{ uri: props.image }} resizeMode="stretch" style={{ width: width, height: height / 3 }} />}
@@ -39,12 +39,12 @@ const WritingDiaryScreen = props => {
                 <TouchableOpacity onPressOut={() => props.navigation.goBack()}>
                     <Text>취소</Text>
                 </TouchableOpacity>
-                {props.diaryContent[0].contents ? (
+                {props.isModified !== true ? (
                     <TouchableOpacity onPressOut={props.insertContents}>
                         <Text>등록</Text>
                     </TouchableOpacity>
                 ) : (
-                <TouchableOpacity onPressOut={props.insertContents}>
+                <TouchableOpacity onPressOut={props.changeContent}>
                     <Text>수정</Text>
                 </TouchableOpacity>)}
 

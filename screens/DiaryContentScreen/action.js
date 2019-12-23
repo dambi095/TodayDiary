@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import DiaryContentScreen from "./screen";
 
 class Action extends Component {
-  
+
+  state = {
+    isModified: false
+  }
+
   render() {
     return <DiaryContentScreen
       {...this.props}

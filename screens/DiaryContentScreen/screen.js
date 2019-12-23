@@ -19,7 +19,12 @@ const DiaryContentScreen = props => (
                     options={["수정", "삭제", "취소"]}
                     actions={[() => {
                         props.navigation.navigate("WritingScreen", {
-                            diary_num: props.diaryContent[0].diary_num
+                            diary_num: props.diaryContent[0].diary_num,
+                            contents: props.diaryContent[0].contents,
+                            title: props.diaryContent[0].title,
+                            image: props.diaryContent[0].image,
+                            page_num: props.diaryContent[0].page_num,
+                            isModified: true
                         });
                     }, () => { props.deleteContent(props.diaryContent[0].diary_num.toString(), props.diaryContent[0].page_num.toString()) }, () => { }]}
                 />
@@ -67,7 +72,6 @@ const styles = StyleSheet.create({
         height: 1,
         width: '95%',
         marginBottom: 5,
-        // marginLeft: 15,
     }
 })
 

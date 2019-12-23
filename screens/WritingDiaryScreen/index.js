@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => {
             return dispatch(diaryActions.insertDiaryContents(_diary_num, _title, _contents, _image));
         },
         // 일기 내용 수정하기
-        updateDiaryContents: (diary_num, page_num, title, contents) => {
-            return dispatch(diaryActions.updateDiaryContents(diary_num, page_num, title, contents, _image));
+        updateDiaryContents: (diary_num, page_num, title, contents, image) => {
+            return dispatch(diaryActions.updateDiaryContents(diary_num, page_num, title, contents, image));
         }
     };
 };

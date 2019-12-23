@@ -4,7 +4,6 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import { Alert } from "react-native";
-
 class Action extends Component {
 
     constructor(props) {
@@ -12,17 +11,19 @@ class Action extends Component {
         const {
             navigation: {
                 state: {
-                    params: { diary_num }
+                    params: { title, image, contents, diary_num, isModified, page_num }
                 }
             }
         } = props;
 
         this.state = {
-            title: "",
-            image: null,
+            title: title,
+            image: image,
             isModalVisible: null,
-            contents: "",
+            contents: contents,
             diary_num,
+            page_num,
+            isModified
         };
     }
 
@@ -35,6 +36,7 @@ class Action extends Component {
                 onContentChanged={this._onContentChanged}
                 pickImage={this._pickImage}
                 insertContents={this._insertContents}
+                changeContent={this._changeContent}
             />
 
         );
@@ -99,13 +101,16 @@ class Action extends Component {
     // 컨텐츠 수정 시 
     _changeContent = async () => {
         const { updateDiaryContents } = this.props;
-        const result = updateDiaryContents(this.state.diary_num, this.state.page_num, this.state.title, this.state.contents);
+        const result = updateDiaryContents(this.state.diary_num, this.state.page_num, this.state.title, this.state.contents, this.state.image);
 
-        if (result) {
-            this.props.navigation.navigate("DiaryContentScreen");
+        if (this.state.title !== "" && this.state.contents !== "") {
+            if (result) {
+                this.props.navigation.navigate("DiaryContentScreen");
+            }
+        } else {
+            Alert.alert("제목 또는 내용을 입력해주세요")
         }
     }
-
 }
 
 export default Action;
