@@ -5,31 +5,28 @@ import RootNavigation from "../../navigation/RootNavigation";
 import LoggedOutNavigation from "../../navigation/LoggedOutNavigation";
 
 class AppContainer extends Component {
-    state = {
-        isModalVisible: false
-    };
     static propTypes = {
-        isLoggedIn: PropTypes.bool.isRequired,
         initApp: PropTypes.func.isRequired
     };
+
     componentDidMount() {
-        const { isLoggedIn, initApp } = this.props;
-        if (isLoggedIn) {
+        const { isLoggedIn, initApp, logOut } = this.props;
+        if (isLoggedIn === true) {
             initApp();
+        } else {
+            logOut()
         }
     }
 
     render() {
-        const { isLoggedIn, profile } = this.props;
+        const { isLoggedIn, profile, logOut } = this.props;
         return (
             <View style={styles.container}>
                 <StatusBar hidden={false} />
-                {isLoggedIn && profile ? (
+                {isLoggedIn === true && profile ? (
                     <RootNavigation
                         screenProps={{
-                            toggleModal: this._toggleModal,
-                            isModalVisible: this.state.isModalVisible,
-                            profile: profile
+                            logOut
                         }}
                     />
                 ) : (
@@ -38,10 +35,6 @@ class AppContainer extends Component {
             </View>
         );
     }
-
-    _toggleModal = () => {
-        this.setState({ isModalVisible: !this.state.isModalVisible });
-    };
 }
 
 const styles = StyleSheet.create({

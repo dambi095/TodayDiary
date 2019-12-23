@@ -1,7 +1,7 @@
 // Imports
 import { AsyncStorage } from "react-native";
 import { API_URL } from "../../constants";
-
+import { actionCreators as diaryActions } from "./diary";
 // Actions
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
@@ -16,7 +16,7 @@ function setLogIn(token) {
     };
 }
 
-function logOut(user) {
+function logOut() {
     return { type: LOG_OUT };
 }
 
@@ -131,7 +131,7 @@ function reducer(state = initialState, action) {
 
 // reducer funtions
 function applyLogIn(state, action) {
-     const { token } = action;
+    const { token } = action;
     return {
         ...state,
         isLoggedIn: true,
@@ -141,6 +141,7 @@ function applyLogIn(state, action) {
 
 function applySetUser(state, action) {
     const { user } = action;
+    console.log("user: ", user);
     return {
         ...state,
         profile: user

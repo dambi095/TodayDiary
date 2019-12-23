@@ -28,7 +28,7 @@ class Action extends Component {
   };
   _submit = async () => {
     const { email, password, isSubmitting } = this.state;
-    const { logIn } = this.props;
+    const { logIn, getDiary } = this.props;
 
     if (!isSubmitting) {
       if (email && password) {
@@ -40,6 +40,8 @@ class Action extends Component {
         if (!loginResult) {
           Alert.alert("잘못된 아이디, 비밀번호 입니다");
           this.setState({ isSubmitting: false });
+        } else {
+          getDiary();
         }
       } else {
         Alert.alert("아이디, 비밀번호를 입력해주세요");

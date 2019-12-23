@@ -7,17 +7,13 @@ const LoggedOutNavigation = createStackNavigator({
   LogIn: {
     screen: LogInScreen,
     navigationOptions: {
-      title: "Log In",
-      headerTitleStyle: { color: "#263238" },
-      headerStyle: { backgroundColor: "#ef9a9a" }
+      title: "Log In"
     }
   },
   SignUp: {
     screen: SignupScreen,
     navigationOptions: {
-      title: "Sign Up",
-      headerTitleStyle: { color: "#263238" },
-      headerStyle: { backgroundColor: "#ef9a9a" }
+      title: "Sign Up"
     }
   }
 });

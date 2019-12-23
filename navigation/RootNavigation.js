@@ -4,8 +4,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import TabsNavigation from "./TabsNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import WritingDiaryScreen from "../screens/WritingDiaryScreen";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
+
 const RootNavigation = createStackNavigator(
   {
     Tabs: {
@@ -14,7 +15,9 @@ const RootNavigation = createStackNavigator(
         title: "MY DIARY",
         headerRight: (
           <View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+              props.screenProps.logOut()
+            }}>
               <Box>
                 <Ionicons name="ios-contact" size={30} color={"#263238"} />
               </Box>
