@@ -10,7 +10,7 @@ class Action extends Component {
     diary_type: 'default',
     diary_num: "",
     switchValue: false,
-    myDiaryData: (this.props.myDiary) ? this.props.myDiary : []
+    myDiary:[]
   };
 
   render() {

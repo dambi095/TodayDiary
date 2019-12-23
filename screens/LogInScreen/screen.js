@@ -31,8 +31,11 @@ const LogInScreen = props => (
         />
         <TouchableOpacity onPressOut={props.submit}>
           <Btn>
-            <BtnText> Log In </BtnText>
+            <BtnText> 로그인 </BtnText>
           </Btn>
+        </TouchableOpacity>
+        <TouchableOpacity onPressOut={props.facebookLogIn}>
+          <BtnText> 페이스북 로그인 </BtnText>
         </TouchableOpacity>
         <TouchableOpacity onPressOut={() => props.navigation.navigate("SignUp")}>
           <BtnText> 가입하기 </BtnText>

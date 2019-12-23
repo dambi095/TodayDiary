@@ -69,7 +69,6 @@ function submitDiaryInfo(diary_title, diary_type, explanation) {
                 token
             }
         } = getState();
-
         return fetch(`${API_URL}/diary/insertDiaryInfo`, {
             method: "POST",
             headers: {

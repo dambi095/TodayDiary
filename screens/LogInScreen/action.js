@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Alert } from "react-native";
 import LogInScreen from "./screen";
+import * as Facebook from 'expo-facebook';
 
 class Action extends Component {
   state = {
@@ -17,6 +18,7 @@ class Action extends Component {
         changeUsername={this._changeUsername}
         changePassword={this._changePassword}
         submit={this._submit}
+        facebookLogIn={this._facebookLogIn}
       />
     );
   }
@@ -26,6 +28,14 @@ class Action extends Component {
   _changePassword = text => {
     this.setState({ password: text });
   };
+
+ 
+// 페이스북 로그인
+_facebookLogIn = async () => {
+  const { facebookLogIn } = this.props
+  const facebookResult = await facebookLogIn();
+}
+
   _submit = async () => {
     const { email, password, isSubmitting } = this.state;
     const { logIn, getDiary } = this.props;

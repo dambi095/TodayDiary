@@ -1,7 +1,8 @@
 // Imports
 import { AsyncStorage } from "react-native";
-import { API_URL } from "../../constants";
-import { actionCreators as diaryActions } from "./diary";
+import { API_URL, FB_APP_ID } from "../../constants";
+import * as Facebook from 'expo-facebook';
+
 // Actions
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
@@ -110,6 +111,49 @@ function logIn(email, password) {
     }
 }
 
+// 페이스북 로그인
+function facebookLogIn() {
+    return async dispatch => {
+        try {
+            await Facebook.initializeAsync(FB_APP_ID);
+            const {
+                type,
+                token,
+                expires,
+                permissions,
+            } = await Facebook.logInWithReadPermissionsAsync({
+                permissions: ['public_profile', "email"],
+            });
+            if (type === 'success') {
+                fetch(`${API_URL}/user/facebookLogIn`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        access_token: token
+                    })
+                })
+                .then(response => response.json())
+                .then(async (json) => {
+                    console.log("json :" , json);
+                    if (json.user && json.token) {
+                        await dispatch(setUser(json.user));
+                        await dispatch(setLogIn(json.user.token));
+                        return json.user;
+                    } else {
+                        return null;
+                    }
+                });
+            } else {
+                // type === 'cancel'
+            }
+        } catch ({ message }) {
+            alert(`Facebook Login Error: ${message}`);
+        }
+    }
+}
+
 const initialState = {
     isLoggedIn: false
 };
@@ -141,7 +185,6 @@ function applyLogIn(state, action) {
 
 function applySetUser(state, action) {
     const { user } = action;
-    console.log("user: ", user);
     return {
         ...state,
         profile: user
@@ -170,7 +213,8 @@ const actionCreators = {
     signUp,
     logIn,
     registerCheck,
-    logOut
+    logOut,
+    facebookLogIn
 };
 
 
