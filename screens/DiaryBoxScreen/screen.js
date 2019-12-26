@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   Switch,
+  ScrollView,
   Dimensions
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -43,8 +44,9 @@ const DiaryboxScreen = props => (
         <>
           {props.myDiary.length !== 0 ? (
             <>
-              <View style={{ flex: 1 }}>
+              <View style={{flex: 1}} >
                 <FlatList
+                  horizontal={true}
                   data={props.myDiary}
                   keyExtractor={(item) => item.diary_num.toString()}
                   refreshing={props.isFetching}
