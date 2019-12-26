@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Diarybox from "./screen";
 import { Alert } from "react-native";
+
 class Action extends Component {
   constructor(props) {
     super(props);

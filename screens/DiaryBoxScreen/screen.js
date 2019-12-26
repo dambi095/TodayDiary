@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import PropTypes from "prop-types";
-import DiaryBox from "../../components/DiaryBox"
+import DiaryBox from "../../components/DiaryBox";
 import Modal from 'react-native-modal';
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "react-native-elements";
@@ -19,7 +19,7 @@ const { width, height } = Dimensions.get("window");
 
 const DiaryboxScreen = props => (
   <View style={styles.container}>
-    {props.myDiary.length === 0 && props.exDiary.length === 0 ? (
+    {props.myDiary.length === 0 ? (
       <>
         <Card containerStyle={{
           borderRadius: 5,
@@ -43,7 +43,7 @@ const DiaryboxScreen = props => (
         <>
           {props.myDiary.length !== 0 ? (
             <>
-              <View style={{ flex: 2 }}>
+              <View style={{ flex: 1 }}>
                 <FlatList
                   data={props.myDiary}
                   keyExtractor={(item) => item.diary_num.toString()}
@@ -57,25 +57,9 @@ const DiaryboxScreen = props => (
               </View>
             </>
           ) : null}
-          <Text style={styles.titleFont}>{props.exDiary.length !== 0 ? "교환일기" : ""}</Text>
-          <FlatList
-            horizontal={true}
-            data={props.exDiary}
-            keyExtractor={item => item.diary_num.toString()}
-            refreshing={props.isFetching}
-            onRefresh={props.refresh}
-            renderItem={({ item }) => <DiaryBox
-              {...item}
-              modifyModal={props.modifyModal} />
-            }
-          />
-          {props.exDiary.length < 5 || props.myDiary.length < 1 ? (
-            <TouchableOpacity
-              onPressOut={props.toggleModal}
-            >
-              <FontAwesome name={"plus-circle"} size={40} color='grey' />
-            </TouchableOpacity>
-          ) : null}
+          <TouchableOpacity onPressOut={props.toggleModal}>
+            <FontAwesome name={"plus-circle"} size={40} color='grey' />
+          </TouchableOpacity>
         </>
       )}
     {props.isModalVisible ?
@@ -187,8 +171,7 @@ const styles = StyleSheet.create({
 DiaryboxScreen.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   refresh: PropTypes.func.isRequired,
-  myDiary: PropTypes.array.isRequired,
-  exDiary: PropTypes.array.isRequired
+  myDiary: PropTypes.array.isRequired
 };
 
 export default DiaryboxScreen;
