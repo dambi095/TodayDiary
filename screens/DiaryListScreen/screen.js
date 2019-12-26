@@ -21,29 +21,29 @@ const DiaryListScreen = props => (
           refreshing={props.isFetching}
           onRefresh={props.refresh}
           renderItem={({ item }) => (
-            <TouchableOpacity onPressOut={ async() => {
+            <TouchableOpacity onPressOut={async () => {
               const result = await props.getDiaryContent(item.diary_num.toString(), item.page_num.toString());
-            if(result){
+              if (result) {
                 props.navigation.navigate("DiaryContentScreen", item.diary_num.toString());
               }
             }}>
-              <View style={{ flexDirection: 'row', marginTop:5 }}>
-                <Text style={{fontSize:17, marginBottom:3}}>{item.title} </Text>
-                <Text style={{fontSize:15, marginBottom:3, paddingTop:3}}>{item.write_date.substring(0, 10)}</Text>
+              <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                <Text style={{ fontSize: 17, marginBottom: 3 }}>{item.title} </Text>
+                <Text style={{ fontSize: 15, marginBottom: 3, paddingTop: 3 }}>{item.write_date.substring(0, 10)}</Text>
               </View>
 
             </TouchableOpacity>
           )}
         />
-          <TouchableOpacity
-              style={{marginBottom:'30%'}}
-              onPressOut={() => {
-                props.navigation.navigate("WritingScreen", {
-                  diary_num: props.diary_num,
-                });
-              }}>
-              <Feather name={"plus-circle"} size={35} color='grey' />
-            </TouchableOpacity>
+        <TouchableOpacity
+          style={{ marginBottom: '30%' }}
+          onPressOut={() => {
+            props.navigation.navigate("WritingScreen", {
+              diary_num: props.diary_num,
+            });
+          }}>
+          <Feather name={"plus-circle"} size={35} color='grey' />
+        </TouchableOpacity>
       </>) : (<>
         <Card containerStyle={{
           borderRadius: 5,
