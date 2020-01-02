@@ -10,7 +10,7 @@ class Action extends Component {
             date: [],
             week: [],
             diary_num: "",
-            isLeapYear: "", // 윤년 여부 
+            isLeapYear: "" // 윤년 여부
         }
     }
 
@@ -70,7 +70,6 @@ class Action extends Component {
         const { getDiarylist, diary_num } = this.props;
         await getDiarylist(diary_num, selected);
     }
-
     render() {
         return <Calendar
             {...this.props}

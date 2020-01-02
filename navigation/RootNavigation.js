@@ -19,7 +19,7 @@ const RootNavigation = createStackNavigator(
               props.screenProps.logOut()
             }}>
               <Box>
-                <Ionicons name="ios-contact" size={30} color={"#263238"} />
+                <Ionicons name="ios-log-out" size={30} color={"#263238"} />
               </Box>
             </TouchableOpacity>
           </View>

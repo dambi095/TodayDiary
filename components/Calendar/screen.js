@@ -38,8 +38,8 @@ const Calendar = props => (
       keyExtractor={item => item.index.toString()}
       renderItem={({ item }) => (
         <TouchableOpacity onPressOut={() => props.getDiaryList(item.newDate)}>
-          <DayText>{item.newDate.toString().substring(8,10)}</DayText>
-        </TouchableOpacity>
+        <DayText>{item.newDate.toString().substring(8,10)}</DayText>
+      </TouchableOpacity>
       )}
     />
   </CalenderView>
@@ -72,6 +72,9 @@ const DayText = styled.Text`
 const styles = StyleSheet.create({
   number: {
     flexDirection: 'row'
+  },
+  red:{
+    color:"red"
   }
 })
 
