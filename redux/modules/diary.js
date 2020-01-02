@@ -101,7 +101,7 @@ function submitDiaryInfo(diary_title, diary_type, explanation) {
 }
 
 // 일기장에 해당하는 일기리스트 가져오기
-function getDiarylist(diary_num) {
+function getDiarylist(diary_num, write_date) {
     return (dispatch, getState) => {
         const {
             user: {
@@ -118,7 +118,8 @@ function getDiarylist(diary_num) {
             },
             body: JSON.stringify({
                 email,
-                diary_num
+                diary_num,
+                write_date
             })
         })
             .then(response => {

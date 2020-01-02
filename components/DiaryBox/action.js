@@ -2,14 +2,23 @@ import React, { Component } from "react";
 import Diarybox from "./screen";
 import { Alert } from "react-native";
 
+
 class Action extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loadded: false
+      loadded: false,
+      today: ""
     }
   }
+
+
+  componentDidMount = () => {
+    let now = new Date();
+    let date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    this.setState({today : date})
+}
 
   render() {
     return <Diarybox
@@ -25,7 +34,7 @@ class Action extends Component {
   // 일기장 진입 시 
   _handlePress = async (diary_num) => {
     const { getDiarylist } = this.props;
-    const result = await getDiarylist(diary_num);
+    const result = await getDiarylist(diary_num, this.state.today);
     // 데이터 로드 성공 시 
     if (result) {
       return true;

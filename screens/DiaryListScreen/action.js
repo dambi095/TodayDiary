@@ -21,7 +21,7 @@ class Action extends Component {
       diary_title, // 일기장 제목을 나타내주기 위해 
       diary_num, // 일기장 번호 넘겨주기 위해
       diary_type,
-      isFetching: false
+      isFetching: false,
     };
   }
 

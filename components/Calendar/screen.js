@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet, Dimensions, Alert, FlatList } from "react-native";
 import styled from "styled-components/native";
-import { Ionicons, Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
 
@@ -33,15 +33,17 @@ const Calendar = props => (
     </DayView>
 
     <FlatList
-        contentContainerStyle={styles.number}
-        data={props.week}
-        keyExtractor={item => item.index}
-        refreshing={props.isFetching}
-        onRefresh={props.refresh}
-        renderItem={({ item }) => (
+      contentContainerStyle={styles.number}
+      data={props.week}
+      keyExtractor={item => item.index.toString()}
+      refreshing={props.isFetching}
+      onRefresh={props.refresh}
+      renderItem={({ item }) => (
+        <TouchableOpacity onPressOut={() => props.getDiaryList(item.newDate)}>
           <DayText>{item.newDate.toString().substring(8, 10)}</DayText>
-        )}
-      />
+        </TouchableOpacity>
+      )}
+    />
   </CalenderView>
 )
 
@@ -71,7 +73,7 @@ const DayText = styled.Text`
 
 const styles = StyleSheet.create({
   number: {
-    flexDirection:'row'
+    flexDirection: 'row'
   }
 })
 

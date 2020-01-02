@@ -8,7 +8,8 @@ class Action extends Component {
 
         this.state = {
             date: [],
-            week: []
+            week: [],
+            diary_num: ""
         }
     }
 
@@ -33,9 +34,6 @@ class Action extends Component {
             obj["newDate"] = newDate;
             week[i] = obj;
         }
-
-        console.log("array", this.state.week);
-
         return week;
     };
 
@@ -58,6 +56,10 @@ class Action extends Component {
         })
     };
 
+    getDiaryList = async(selected) => {
+        const { getDiarylist, diary_num } = this.props;
+        await getDiarylist(diary_num, selected);
+    }   
 
     render() {
         return <Calendar
@@ -65,6 +67,7 @@ class Action extends Component {
             {...this.state}
             onPressArrowLeft={this.onPressArrowLeft}
             onPressArrowRight={this.onPressArrowRight}
+            getDiaryList={this.getDiaryList}
         />
     }
 
