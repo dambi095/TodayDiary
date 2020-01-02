@@ -9,7 +9,8 @@ class Action extends Component {
         this.state = {
             date: [],
             week: [],
-            diary_num: ""
+            diary_num: "",
+            isLeapYear: "", // 윤년 여부 
         }
     }
 
@@ -17,9 +18,15 @@ class Action extends Component {
         let now = new Date();
         let date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         let week = this.makeWeekArr(date);
+        let year = now.getFullYear();
+        let isLeapYear = false;
+        // 윤년인지 아닌지 확인
+        (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) ? isLeapYear = true : isLeapYear = false;
+        
         this.setState({
-            date, week
+            date, week, isLeapYear
         })
+
     }
 
     makeWeekArr = date => {
@@ -34,13 +41,15 @@ class Action extends Component {
             obj["newDate"] = newDate;
             week[i] = obj;
         }
+
         return week;
     };
 
     onPressArrowLeft = () => {
-        console.log(" onPressArrowLeft () ");
         let newDate = new Date(this.state.date.valueOf() - 86400000 * 7);
         let newWeek = this.makeWeekArr(newDate);
+
+        if(this.state.isLeapYear){}
 
         this.setState({
             date: newDate, week: newWeek
@@ -56,10 +65,11 @@ class Action extends Component {
         })
     };
 
-    getDiaryList = async(selected) => {
+    getDiaryList = async (selected) => {
+        console.log(" selected :" , selected);
         const { getDiarylist, diary_num } = this.props;
         await getDiarylist(diary_num, selected);
-    }   
+    }
 
     render() {
         return <Calendar

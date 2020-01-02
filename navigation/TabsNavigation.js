@@ -18,20 +18,7 @@ const TabsNavigation = createBottomTabNavigator(
           />
         )
       }
-    },
-    Calendar: {
-      screen: CalendarScreen,
-      navigationOptions: {
-        tabBarIcon: ({ focused }) => (
-          <Ionicons
-            name="ios-search"
-            size={30}
-            color={focused ? "#263238" : "#ffcdd2"}
-          />
-        )
-      }
-    },
-
+    }
   },
   {
     tabBarOptions: {

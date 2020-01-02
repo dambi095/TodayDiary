@@ -36,11 +36,9 @@ const Calendar = props => (
       contentContainerStyle={styles.number}
       data={props.week}
       keyExtractor={item => item.index.toString()}
-      refreshing={props.isFetching}
-      onRefresh={props.refresh}
       renderItem={({ item }) => (
         <TouchableOpacity onPressOut={() => props.getDiaryList(item.newDate)}>
-          <DayText>{item.newDate.toString().substring(8, 10)}</DayText>
+          <DayText>{item.newDate.toString().substring(8,10)}</DayText>
         </TouchableOpacity>
       )}
     />
