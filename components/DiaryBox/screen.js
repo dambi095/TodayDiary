@@ -13,7 +13,7 @@ const { width, height } = Dimensions.get("window");
 const Diarybox = props => (
   <View>
     <Card containerStyle={styled.boxBorder}>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row'}}>
         <TouchableOpacity
           onPressOut={async () => {
             const result = await props.handlePress(props.diary_num, props.today);
@@ -28,11 +28,12 @@ const Diarybox = props => (
           }}
         >
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{props.diary_title} </Text>
-          <Text style={{ fontSize: 15, lineHeight: 20, color: 'grey' }}>{props.create_date.substring(0, 10)}</Text>
+          <Text style={{ fontSize: 15, lineHeight: 20, color: 'grey', marginTop:"2%", marginBottom:"2%" }}>{props.create_date.substring(0, 10)}</Text>
+          <Text>{props.explanation}</Text>
         </TouchableOpacity>
         <OptionsMenu
           button={MoreIcon}
-          buttonStyle={{ width: 20, height: 20, margin: 7.5, resizeMode: "contain" }}
+          buttonStyle={{ width: 20, height: 20, resizeMode: "contain" }}
           options={["수정", "삭제", "취소"]}
           actions={[props.editDiaryInfo, props.deleteDiary, props.cancel]}
         />
@@ -43,8 +44,8 @@ const Diarybox = props => (
 
 var styled = StyleSheet.create({
   boxBorder: {
-    alignItems:'center',
-    justifyContent:'center',
+    alignItems: 'center',
+    justifyContent:'space-around',
     flexDirection: 'row',
     borderRadius: 20,
     shadowColor: 'grey',

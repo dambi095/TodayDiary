@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Diarybox from "./screen";
 import { Alert } from "react-native";
 
-
 class Action extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +16,10 @@ class Action extends Component {
   componentDidMount = () => {
     let now = new Date();
     let date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    this.setState({today : date})
-}
+    console.log("!!!!! : ", now.getDate(), now.getHours(), now.getMinutes());
+    console.log("date : ", date);
+    this.setState({ today: date })
+  }
 
   render() {
     return <Diarybox
@@ -55,7 +56,7 @@ class Action extends Component {
   }
 
   // 일기장 수정 시 
-  _editDiaryInfo = async() => {
+  _editDiaryInfo = async () => {
     const { modifyModal, diary_title, explanation, diary_num } = this.props;
     modifyModal(diary_title, explanation, diary_num);
 

@@ -240,7 +240,7 @@ function deleteDiary(diary_num) {
             })
             .then(async (result) => {
                 if (result > 0) {
-                    await dispatch(getDiarylist(diary_num));
+                    await dispatch(getDiary(diary_num));
                     return true
                 } else {
                     return false;

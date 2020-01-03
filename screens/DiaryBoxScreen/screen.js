@@ -5,11 +5,9 @@ import {
   View,
   TouchableOpacity,
   FlatList,
-  Switch,
-  ScrollView,
   Dimensions
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import PropTypes from "prop-types";
 import DiaryBox from "../../components/DiaryBox";
 import Modal from 'react-native-modal';
@@ -35,7 +33,7 @@ const DiaryboxScreen = props => (
               style={{ paddingTop: 10 }}
               onPressOut={props.toggleModal}
             >
-              <FontAwesome name={"plus-circle"} size={55} color='grey' />
+              <AntDesign name={"edit"} size={50} color='grey' />
             </TouchableOpacity>
           </View>
         </Card>
@@ -60,8 +58,8 @@ const DiaryboxScreen = props => (
               </View>
             </>
           ) : null}
-          <TouchableOpacity onPressOut={props.toggleModal}>
-            <FontAwesome name={"plus-circle"} size={40} color='grey' />
+          <TouchableOpacity onPressOut={props.toggleModal} style={{marginBottom:5}}>
+              <AntDesign name={"edit"} size={40} color='grey' />
           </TouchableOpacity>
         </>
       )}
