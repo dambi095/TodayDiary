@@ -8,12 +8,12 @@ const LogInScreen = props => (
   <Container>
     <StatusBar barStyle={"light-content"} />
       <Header>
-        <AppName>끄적끄적</AppName>
+        <AppName>하루일기</AppName>
       </Header>
       <Content>
         <Input
           placeholder=" Email"
-          placeholderTextColor="#ffcdd2"
+          placeholderTextColor="grey"
           autoCapitalize={"none"}
           autoCorrect={false}
           value={props.username}
@@ -21,7 +21,7 @@ const LogInScreen = props => (
         />
         <Input
           placeholder=" Password"
-          placeholderTextColor="#ffcdd2"
+          placeholderTextColor="grey"
           autoCapitalize={"none"}
           secureTextEntry={true}
           value={props.password}
@@ -33,9 +33,6 @@ const LogInScreen = props => (
           <Btn>
             <BtnText> 로그인 </BtnText>
           </Btn>
-        </TouchableOpacity>
-        <TouchableOpacity onPressOut={props.facebookLogIn}>
-          <BtnText> 페이스북 로그인 </BtnText>
         </TouchableOpacity>
         <TouchableOpacity onPressOut={() => props.navigation.navigate("SignUp")}>
           <BtnText> 가입하기 </BtnText>
@@ -57,7 +54,7 @@ const Header = styled.View`
 
 const AppName = styled.Text`
   font-size: 50;
-  color: #ef9a9a;
+  color: grey;
 `;
 
 const Content = styled.View`
@@ -71,7 +68,7 @@ const Input = styled.TextInput`
   margin-bottom: 10;
   border-width: 1;
   border-radius: 10;
-  border-color: #ef9a9a;
+  border-color: grey;
   height:30;  
 `;
 
@@ -86,7 +83,7 @@ const Btn = styled.View`
 const BtnText = styled.Text`
   text-align: center;
   font-weight: bold;
-  color: #ef9a9a;
+  color: grey;
 `;
 
 export default LogInScreen;

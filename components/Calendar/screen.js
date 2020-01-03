@@ -72,9 +72,6 @@ const DayText = styled.Text`
 const styles = StyleSheet.create({
   number: {
     flexDirection: 'row'
-  },
-  red:{
-    color:"red"
   }
 })
 

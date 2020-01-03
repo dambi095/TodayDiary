@@ -22,7 +22,7 @@ class Action extends Component {
         let isLeapYear = false;
         // 윤년인지 아닌지 확인
         (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) ? isLeapYear = true : isLeapYear = false;
-        
+        console.log("date:",date);
         this.setState({
             date, week, isLeapYear
         })
