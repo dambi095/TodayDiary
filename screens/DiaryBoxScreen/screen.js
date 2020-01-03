@@ -26,10 +26,10 @@ const DiaryboxScreen = props => (
           borderRadius: 5,
           borderWidth: 3,
           borderStyle: 'dashed',
-          width: '70%',
-          height: '70%'
+          width: width/1.2,
+          height: height/2
         }}>
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems:'center', justifyContent:'center' , paddingTop: '40%'}}>
             <Text style={styles.titleFont}>일기장을 생성 하세요!</Text>
             <TouchableOpacity
               style={{ paddingTop: 10 }}
@@ -44,8 +44,9 @@ const DiaryboxScreen = props => (
         <>
           {props.myDiary.length !== 0 ? (
             <>
-              <View style={{flex: 1}} >
+              <View style={{ flex: 1 }} >
                 <FlatList
+                  contentContainerStyle={{ alignItems: 'center' }}
                   horizontal={true}
                   data={props.myDiary}
                   keyExtractor={(item) => item.diary_num.toString()}
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   modalbutton: {
     width: 50,
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     fontSize: 23,
     fontWeight: "900",
-    color: '#263238',
+    color: 'grey',
   },
   modalText: {
     fontSize: 18,

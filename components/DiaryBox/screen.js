@@ -43,6 +43,8 @@ const Diarybox = props => (
 
 var styled = StyleSheet.create({
   boxBorder: {
+    alignItems:'center',
+    justifyContent:'center',
     flexDirection: 'row',
     borderRadius: 20,
     shadowColor: 'grey',
