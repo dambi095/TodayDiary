@@ -70,8 +70,8 @@ const DiaryboxScreen = props => (
         animationInTiming={500}
         onSwipeComplete={props.toggleModal}
       >
-        <View style={{ backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
-          <View style={{ flexDirection: 'column' }}>
+        <View style={{height:height/2, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ flexDirection: 'column', height:'50%' }}>
             <Text style={styles.modalText}>제목</Text>
             <TextInput maxLength={20}
               style={styles.modalTextInput}
@@ -88,7 +88,7 @@ const DiaryboxScreen = props => (
             />
           </View>
 
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row'}}>
             <TouchableOpacity onPressOut={props.toggleModal}
               style={styles.modalbutton}
             >
@@ -126,7 +126,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,
-    marginBottom: 30
+    marginBottom: 30,
+    marginRight:50,
+    marginLeft:50
   },
   modalTextInput: {
     width: 250,
@@ -167,7 +169,7 @@ const styles = StyleSheet.create({
     color: '#263238',
     fontWeight: "bold",
     marginBottom: 10,
-    marginTop: 20,
+    marginTop: 50,
   }
 });
 
