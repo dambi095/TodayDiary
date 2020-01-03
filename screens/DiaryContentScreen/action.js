@@ -21,7 +21,7 @@ class Action extends Component {
     const { deleteDiaryContents } = this.props;
     const result = await deleteDiaryContents(_diary_num, _page_num);
     if (result) {
-      this.props.navigation.navigate("DiaryListScreen");
+      this.props.navigation.navigate("ListScreen");
     }
   }
 

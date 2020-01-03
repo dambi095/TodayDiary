@@ -4,8 +4,10 @@ import { createStackNavigator } from 'react-navigation-stack';
 import TabsNavigation from "./TabsNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import WritingDiaryScreen from "../screens/WritingDiaryScreen";
-import { TouchableOpacity, View } from "react-native";
+import DiaryListScreen from "../screens/DiaryListScreen";
+import { TouchableOpacity, View, Text } from "react-native";
 import styled from "styled-components/native";
+import DiaryContentScreen from "../screens/DiaryContentScreen";
 
 const RootNavigation = createStackNavigator(
   {
@@ -31,6 +33,16 @@ const RootNavigation = createStackNavigator(
       navigationOptions: {
         title: "글 작성"
       }
+    },
+    ListScreen: {
+      screen: DiaryListScreen,
+      navigationOptions: props => ({
+        title: props.navigation.state.params.diary_title
+      })
+    },
+    ContentScreen: {
+      screen: DiaryContentScreen,
+      navigationOptions: props => ({})
     }
   },
   {

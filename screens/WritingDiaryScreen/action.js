@@ -84,12 +84,12 @@ class Action extends Component {
     // 글쓰기 저장 
     _insertContents = async () => {
         const { insertDiaryContents } = this.props;
-
+        console.log("this.props: ", this.props);
         if (this.state.title !== "" && this.state.contents !== "") {
             const result = await insertDiaryContents(this.state.diary_num, this.state.title, this.state.contents, this.state.image);
 
             if (result) {
-                this.props.navigation.navigate("DiaryContentScreen");
+                this.props.navigation.navigate("ContentScreen");
             }
         }
         else {
@@ -105,7 +105,7 @@ class Action extends Component {
 
         if (this.state.title !== "" && this.state.contents !== "") {
             if (result) {
-                this.props.navigation.navigate("DiaryContentScreen");
+                this.props.navigation.navigate("ContentScreen");
             }
         } else {
             Alert.alert("제목 또는 내용을 입력해주세요")
