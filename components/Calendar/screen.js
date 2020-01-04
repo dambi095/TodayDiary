@@ -15,7 +15,7 @@ const Calendar = props => (
           size={28}
         />
       </TouchableOpacity>
-      <YearText>{props.date.toUTCString().substring(8,16)}</YearText>
+      <YearText>{props.date.toString().substring(10, 16)}.{props.date.toString().substring(3, 8)}</YearText>
       <TouchableOpacity onPress={() => { props.onPressArrowRight() }}>
         <Ionicons
           name="ios-arrow-forward"
