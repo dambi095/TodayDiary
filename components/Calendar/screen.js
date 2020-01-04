@@ -8,11 +8,11 @@ const { width, height } = Dimensions.get("window");
 const Calendar = props => (
   <CalenderView>
     <YearView>
-      <TouchableOpacity onPress={() => { props.onPressArrowLeft() }}>
+      <TouchableOpacity onPress={() => { console.log("props:" , props.selectedDay, props.date); props.onPressArrowLeft() }}>
         <Ionicons
           name="ios-arrow-back"
           color="#2f3640"
-          size={28}
+          size={26}
         />
       </TouchableOpacity>
       <YearText>{props.date.toString().substring(10, 16)}.{props.date.toString().substring(3, 8)}</YearText>
@@ -20,7 +20,7 @@ const Calendar = props => (
         <Ionicons
           name="ios-arrow-forward"
           color="#2f3640"
-          size={28}
+          size={25}
         />
       </TouchableOpacity>
     </YearView>

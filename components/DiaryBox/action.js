@@ -7,18 +7,8 @@ class Action extends Component {
     super(props);
 
     this.state = {
-      loadded: false,
-      today: ""
+      loadded: false
     }
-  }
-
-
-  componentDidMount = () => {
-    let now = new Date();
-    let date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    console.log("!!!!! : ", now.getDate(), now.getHours(), now.getMinutes());
-    console.log("date : ", date);
-    this.setState({ today: date })
   }
 
   render() {
@@ -34,8 +24,8 @@ class Action extends Component {
 
   // 일기장 진입 시 
   _handlePress = async (diary_num) => {
-    const { getDiarylist } = this.props;
-    const result = await getDiarylist(diary_num, this.state.today);
+    const { getDiarylist, today} = this.props;
+    const result = await getDiarylist(diary_num, today);
     // 데이터 로드 성공 시 
     if (result) {
       return true;

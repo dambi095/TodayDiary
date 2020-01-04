@@ -8,6 +8,7 @@ const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
 const SET_USER = "SET_USER";
 const SAVE_TOKEN = "SAVE_TOKEN";
+const SET_TIME = "SET_TIME";
 
 // Action Creators
 function setLogIn(token) {
@@ -33,6 +34,13 @@ function saveToken(token) {
         type: SAVE_TOKEN,
         token
     };
+}
+
+function setTime(today) {
+    return {
+        type: SET_TIME,
+        today
+    }
 }
 
 /* API Actions */
@@ -134,17 +142,17 @@ function facebookLogIn() {
                         access_token: token
                     })
                 })
-                .then(response => response.json())
-                .then(async (json) => {
-                    console.log("json :" , json);
-                    if (json.user && json.token) {
-                        await dispatch(setUser(json.user));
-                        await dispatch(setLogIn(json.user.token));
-                        return json.user;
-                    } else {
-                        return null;
-                    }
-                });
+                    .then(response => response.json())
+                    .then(async (json) => {
+                        console.log("json :", json);
+                        if (json.user && json.token) {
+                            await dispatch(setUser(json.user));
+                            await dispatch(setLogIn(json.user.token));
+                            return json.user;
+                        } else {
+                            return null;
+                        }
+                    });
             } else {
                 // type === 'cancel'
             }
@@ -154,6 +162,23 @@ function facebookLogIn() {
     }
 }
 
+// 오늘 날짜 가져오기 
+function getTodayTime() {
+    console.log("getTodayTime () ");
+    return async dispatch => {
+        return fetch(`${API_URL}/user/getCurDate`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.text())
+            .then(date => {
+                console.log("getTodayTime : ", date);
+                dispatch(setTime(date));
+            })
+    }
+}
 const initialState = {
     isLoggedIn: false
 };
@@ -168,6 +193,8 @@ function reducer(state = initialState, action) {
             return applyLogOut(state, action);
         case SAVE_TOKEN:
             return applySetToken(state, action);
+        case SET_TIME:
+            return applySetTime(state, action);
         default:
             return state;
     }
@@ -209,12 +236,21 @@ function applySetToken(state, action) {
     };
 }
 
+function applySetTime(state, action) {
+    const { today } = action;
+    return {
+        ...state,
+        today: today
+    }
+}
+
 const actionCreators = {
     signUp,
     logIn,
     registerCheck,
     logOut,
-    facebookLogIn
+    facebookLogIn,
+    getTodayTime
 };
 
 

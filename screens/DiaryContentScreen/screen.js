@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import OptionsMenu from "react-native-options-menu";
-
 const MoreIcon = require("../../assets/icon_receiptpay.png");
 
 const { width, height } = Dimensions.get("window");
@@ -26,7 +25,7 @@ const DiaryContentScreen = props => (
                             page_num: props.diaryContent[0].page_num,
                             isModified: true
                         });
-                    }, () => { props.deleteContent(props.diaryContent[0].diary_num.toString(), props.diaryContent[0].page_num.toString()) }, () => { }]}
+                    }, () => {props.deleteContent(props.diaryContent[0].diary_num.toString(), props.diaryContent[0].page_num.toString())}, () => { }]}
                 />
             </View>
             <View style={styles.lineStyle} />

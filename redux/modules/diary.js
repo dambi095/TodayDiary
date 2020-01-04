@@ -250,7 +250,8 @@ function deleteDiary(diary_num) {
 }
 
 // 일기 삭제하기 
-function deleteDiaryContents(diary_num, page_num) {
+function deleteDiaryContents(diary_num, page_num, write_date) {
+    console.log("write_date: " , write_date);
     return (dispatch, getState) => {
         const {
             user: {
@@ -278,7 +279,7 @@ function deleteDiaryContents(diary_num, page_num) {
             })
             .then(async (result) => {
                 if (result > 0) {
-                    await dispatch(getDiarylist(diary_num));
+                    await dispatch(getDiarylist(diary_num, write_date));
                     return true
                 } else {
                     return false;

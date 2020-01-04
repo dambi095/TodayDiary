@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     logOut: async () => {
       await dispatch(userActions.logOut());
+    },
+    getTodayTime: async() => {
+      await dispatch(userActions.getTodayTime());
     }
   };
 };

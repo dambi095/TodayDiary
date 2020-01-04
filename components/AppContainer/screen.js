@@ -10,7 +10,8 @@ class AppContainer extends Component {
     };
 
     componentDidMount() {
-        const { isLoggedIn, initApp, logOut } = this.props;
+        const { isLoggedIn, initApp, logOut, getTodayTime } = this.props;
+        getTodayTime();
         if (isLoggedIn === true) {
             initApp();
         } else {
