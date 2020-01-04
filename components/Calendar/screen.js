@@ -11,13 +11,15 @@ const Calendar = props => (
       <TouchableOpacity onPress={() => { props.onPressArrowLeft() }}>
         <Ionicons
           name="ios-arrow-back"
+          color="#2f3640"
           size={28}
         />
       </TouchableOpacity>
-      <YearText>{props.date.toString().substring(0, 16)}</YearText>
+      <YearText>{props.date.toUTCString().substring(8,16)}</YearText>
       <TouchableOpacity onPress={() => { props.onPressArrowRight() }}>
         <Ionicons
           name="ios-arrow-forward"
+          color="#2f3640"
           size={28}
         />
       </TouchableOpacity>
@@ -38,8 +40,8 @@ const Calendar = props => (
       keyExtractor={item => item.index.toString()}
       renderItem={({ item }) => (
         <TouchableOpacity onPressOut={() => props.getDiaryList(item.newDate)}>
-        <DayText>{item.newDate.toString().substring(8,10)}</DayText>
-      </TouchableOpacity>
+          <DayText style={[props.selectedStyle == true && props.selectedDay === item.newDate ? styles.selected : styles.default]}>{item.newDate.toString().substring(8, 10)}</DayText>
+        </TouchableOpacity>
       )}
     />
   </CalenderView>
@@ -56,22 +58,33 @@ const DayView = styled.View`
 
 const YearView = styled.View`
   flexDirection: row;
+  marginTop:5; 
+  marginBottom:5;
 `
 
 const YearText = styled.Text`
   font-size: 20;
   marginLeft: 10;
   marginRight:10;
+  color: #2f3640;
 `
 
 const DayText = styled.Text`
   marginRight: 5;
+  color: #2f3640;
+  fontWeight: bold;
   width: ${width / 8};
 `;
 
 const styles = StyleSheet.create({
   number: {
     flexDirection: 'row'
+  },
+  selected: {
+    color: '#00a8ff',
+  },
+  default: {
+    color: '#273c75'
   }
 })
 

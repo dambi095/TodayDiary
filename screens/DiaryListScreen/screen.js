@@ -56,7 +56,7 @@ const DiaryListScreen = props => (
               <TouchableOpacity
                 style={{ paddingTop: 10 }}
                 onPressOut={() => {
-                  props.navigation.navigate("WritingDiaryScreen", {
+                  props.navigation.navigate("WritingScreen", {
                     diary_num: props.diary_num,
                   });
                 }}>
@@ -69,7 +69,7 @@ const DiaryListScreen = props => (
       {props.diaryList.length !== 0 && (
         <TouchableOpacity
           onPressOut={() => {
-            props.navigation.navigate("WritingDiaryScreen", {
+            props.navigation.navigate("WritingScreen", {
               diary_num: props.diary_num,
             });
           }}>

@@ -9,7 +9,7 @@ class Action extends Component {
     diary_title: null,
     diary_type: 'default',
     diary_num: "",
-    switchValue: false
+    switchValue: false,
   };
 
   render() {
