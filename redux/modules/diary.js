@@ -251,7 +251,6 @@ function deleteDiary(diary_num) {
 
 // 일기 삭제하기 
 function deleteDiaryContents(diary_num, page_num, write_date) {
-    console.log("write_date: ", write_date);
     return (dispatch, getState) => {
         const {
             user: {

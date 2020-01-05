@@ -59,23 +59,27 @@ const DiaryListScreen = props => (
           {props.selectedDay === props.today ? (
             <View>
               {props.diaryList.length === 0 ? (
-              <Card containerStyle={{
+               <Card containerStyle={{
                 borderRadius: 5,
                 borderWidth: 3,
                 borderStyle: 'dashed',
                 width: width / 1.2,
                 height: height / 2
               }}>
-                <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '40%' }}>
-                  <Text style={styles.titleFont}>오늘의 일기를 작성해보세요</Text>
-                  <TouchableOpacity
-                    style={{ paddingTop: 10 }}
-                    onPressOut={props.toggleModal}
-                  >
-                    <AntDesign name={"edit"} size={50} color='grey' />
-                  </TouchableOpacity>
-                </View>
-              </Card> ) : ( <TouchableOpacity
+                    <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop:'40%' }}>
+                     <Text style={styles.addFont}>오늘의 일기를 추가하세요!</Text> 
+                      <TouchableOpacity
+                        style={{ paddingTop: 10 }}
+                        onPressOut={() => {
+                          props.navigation.navigate("WritingScreen", {
+                            diary_num: props.diary_num,
+                          });
+                        }}>
+                        <Feather name={"plus-circle"} size={35} color='grey' />
+                      </TouchableOpacity>
+          
+                    </View>
+                  </Card>) : ( <TouchableOpacity
                 onPressOut={() => {
                   props.navigation.navigate("WritingScreen", {
                     diary_num: props.diary_num,

@@ -47,8 +47,7 @@ const DiaryContentScreen = props => (
 const ContentText = styled.Text`
   marginRight: 5;
   color: #2f3640;
-  fontWeight: bold;
-  fontSize:18
+  fontSize:15
 `;
 
 
