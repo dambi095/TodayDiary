@@ -22,6 +22,7 @@ class Action extends Component {
       diary_num, // 일기장 번호 넘겨주기 위해
       diary_type,
       isFetching: false,
+      selectedDay: ""
     };
   }
 
@@ -32,6 +33,7 @@ class Action extends Component {
       getDiaryContents={this._getDiaryContents}
       setValue={this._setValue}
       refresh={this._refresh}
+      selectedDate={this.selectedDate}
     />;
   }
 
@@ -48,6 +50,13 @@ class Action extends Component {
     if (result) {
       return true;
     }
+  }
+
+  // 선택된 날짜 받아오기 
+  selectedDate = (selected) => {
+    const { today } = this.props;
+    console.log("date : ", selected, today );
+    this.setState({ selectedDay : selected });
   }
 
 }

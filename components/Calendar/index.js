@@ -7,9 +7,10 @@ const mapStateToProps = (state) => {
 
     const {
         diary: { diaryList },
+        user: { today }
     } = state;
 
-    return { diaryList };
+    return { diaryList, today };
 };
 
 const mapDispatchToProps = (dispatch) => {

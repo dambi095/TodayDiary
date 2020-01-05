@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Dimensions
 } from "react-native";
-import { Card } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
 import Calender from "../../components/Calendar";
 
@@ -19,14 +18,15 @@ const DiaryListScreen = props => (
   <View>
     <View>
       <Calender
+        selectedDate={props.selectedDate}
         diary_num={props.diary_num}
       />
     </View>
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-      {props.diaryList.length !== 0 ?
+      {props.diaryList.length !== 0 &&
         (<>
           <FlatList
-            contentContainerStyle={{ marginTop: '5%', height:height/1.5 }}
+            contentContainerStyle={{ marginTop: '5%', height: height / 1.5 }}
             data={props.diaryList}
             keyExtractor={item => item.page_num.toString()}
             renderItem={({ item }) => (
@@ -43,39 +43,33 @@ const DiaryListScreen = props => (
               </TouchableOpacity>
             )}
           />
-        </>) : (<>
-          <Card containerStyle={{
-            borderRadius: 5,
-            borderWidth: 3,
-            borderStyle: 'dashed',
-            width: '80%',
-            height: '80%'
-          }}>
-            <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '50%' }}>
-              {props.diary_type == 'default' ? <Text style={styles.addFont}>당신의 일기를 추가하세요!</Text> : null}
-              <TouchableOpacity
-                style={{ paddingTop: 10 }}
-                onPressOut={() => {
-                  props.navigation.navigate("WritingScreen", {
-                    diary_num: props.diary_num,
-                  });
-                }}>
-                <Feather name={"plus-circle"} size={35} color='grey' />
-              </TouchableOpacity>
-            </View>
-          </Card>
         </>)
       }
-      {props.diaryList.length !== 0 && (
-        <TouchableOpacity
-          onPressOut={() => {
-            props.navigation.navigate("WritingScreen", {
-              diary_num: props.diary_num,
-            });
-          }}>
-          <Feather name={"plus-circle"} size={35} color='grey' />
-        </TouchableOpacity>)}
     </View>
+    {props.selectedDay < props.today ? (
+      <View style={{ marginTop: '70%', alignItems: 'center' }}>
+        {props.diaryList.length == 0 && (
+          <Text >작성한 일기가 없습니다</Text>
+        )}
+      </View>
+    ) : (
+        <View style={{ alignItems: 'center' }}>
+          {props.selectedDay === props.today ? (
+            <TouchableOpacity
+              onPressOut={() => {
+                props.navigation.navigate("WritingScreen", {
+                  diary_num: props.diary_num,
+                });
+              }}>
+              <Feather name={"plus-circle"} size={35} color='grey' />
+            </TouchableOpacity>
+          ) : (
+              <View style={{ marginTop: '70%', alignItems: 'center' }}>
+                <Text>아직 작성할 수 없습니다</Text>
+              </View>
+            )}
+        </View>
+      )}
   </View>
 );
 

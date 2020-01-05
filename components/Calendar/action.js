@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Calendar from "./screen";
 
+const moment = require("moment");
+
 class Action extends Component {
 
     constructor(props) {
@@ -16,19 +18,14 @@ class Action extends Component {
         }
     }
 
-    componentDidMount = async() => {
-        let now = new Date();
-        let date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    componentDidMount = async () => {
+        let date = new Date(moment(date).format("YYYY-MM-DD"));
         let week = this.makeWeekArr(date);
-        let year = now.getFullYear();
-        let isLeapYear = false;
-        // 윤년인지 아닌지 확인
-        (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) ? isLeapYear = true : isLeapYear = false;
 
         this.setState({
-            date, week, isLeapYear, selectedDay: date
+            date, week, selectedDay: date,
         })
-        
+
     }
 
     makeWeekArr = date => {
@@ -51,11 +48,10 @@ class Action extends Component {
         console.log("onPressArrowLeft()");
         let newDate = new Date(this.state.date.valueOf() - 86400000 * 7);
         let newWeek = this.makeWeekArr(newDate);
-        
+
         this.setState({
             date: newDate, week: newWeek, selectedDay: newDate
         })
-        console.log("newDate : ", newDate, " :", this.state.selectedDay);
     };
 
     onPressArrowRight = () => {
@@ -69,8 +65,9 @@ class Action extends Component {
 
     getDiaryList = async (selected) => {
         console.log(" getDiaryList () :", selected);
+        const { getDiarylist, diary_num, selectedDate } = this.props;
+        selectedDate(moment(selected).format("YYYY-MM-DD"));
         this.setState({ selectedDay: selected, selectedStyle: true })
-        const { getDiarylist, diary_num } = this.props;
         await getDiarylist(diary_num, selected);
     }
 

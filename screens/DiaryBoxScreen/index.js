@@ -20,10 +20,6 @@ const mapDispatchToProps = (dispatch) => {
     getDiary: () => {
       dispatch(diaryActions.getDiary());
     },
-    // 일기 리스트 가져오기 
-    getDiaryList: () => {
-      dispatch(diaryActions.getDiaryList());
-    },
     // 일기장 수정 시 
     updateDiaryInfo: (diary_title, explanation, diary_num) => {
       return dispatch(diaryActions.updateDiaryInfo(diary_title, explanation, diary_num));

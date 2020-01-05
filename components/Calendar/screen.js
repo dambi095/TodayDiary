@@ -8,7 +8,7 @@ const { width, height } = Dimensions.get("window");
 const Calendar = props => (
   <CalenderView>
     <YearView>
-      <TouchableOpacity onPress={() => { console.log("props:" , props.selectedDay, props.date); props.onPressArrowLeft() }}>
+      <TouchableOpacity onPress={() => { props.onPressArrowLeft() }}>
         <Ionicons
           name="ios-arrow-back"
           color="#2f3640"
@@ -58,8 +58,8 @@ const DayView = styled.View`
 
 const YearView = styled.View`
   flexDirection: row;
-  marginTop:5; 
-  marginBottom:5;
+  marginTop:10; 
+  marginBottom:10;
 `
 
 const YearText = styled.Text`
