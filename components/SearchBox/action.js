@@ -36,10 +36,10 @@ class Action extends Component {
         if (result == 0) {
             Alert.alert("검색 결과가 없습니다");
             this.setState({ diaryLength: result , search: false })
+            this.setState({ searchValue: ""});
         } else {
             this.setState({ diaryLength: result , search: true })
         }
-        this.setState({ searchValue: ""});
     }
 
 
