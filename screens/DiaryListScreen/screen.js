@@ -56,37 +56,38 @@ const DiaryListScreen = props => (
       </View>
     ) : (
         <View style={{ alignItems: 'center' }}>
-          {props.selectedDay === props.today ? (
+          {props.selectedDay === props.today && props.diaryList.length < 6 ? (
             <View>
               {props.diaryList.length === 0 ? (
-               <Card containerStyle={{
-                borderRadius: 5,
-                borderWidth: 3,
-                borderStyle: 'dashed',
-                width: width / 1.2,
-                height: height / 2
-              }}>
-                    <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop:'40%' }}>
-                     <Text style={styles.addFont}>오늘의 일기를 추가하세요!</Text> 
-                      <TouchableOpacity
-                        style={{ paddingTop: 10 }}
-                        onPressOut={() => {
-                          props.navigation.navigate("WritingScreen", {
-                            diary_num: props.diary_num,
-                          });
-                        }}>
-                        <Feather name={"plus-circle"} size={35} color='grey' />
-                      </TouchableOpacity>
-          
-                    </View>
-                  </Card>) : ( <TouchableOpacity
-                onPressOut={() => {
-                  props.navigation.navigate("WritingScreen", {
-                    diary_num: props.diary_num,
-                  });
+                <Card containerStyle={{
+                  borderRadius: 5,
+                  borderWidth: 3,
+                  borderStyle: 'dashed',
+                  width: width / 1.2,
+                  height: height / 2,
+                  marginTop: '20%'
                 }}>
-                <Feather name={"plus-circle"} size={35} color='grey' />
-              </TouchableOpacity>)}
+                  <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '40%' }}>
+                    <Text style={styles.addFont}>오늘의 일기를 추가하세요! 최대 5개 까지 작성할 수 있습니다</Text>
+                    <TouchableOpacity
+                      style={{ paddingTop: 10 }}
+                      onPressOut={() => {
+                        props.navigation.navigate("WritingScreen", {
+                          diary_num: props.diary_num,
+                        });
+                      }}>
+                      <Feather name={"plus-circle"} size={35} color='grey' />
+                    </TouchableOpacity>
+
+                  </View>
+                </Card> ) : (<TouchableOpacity
+                  onPressOut={() => {
+                    props.navigation.navigate("WritingScreen", {
+                      diary_num: props.diary_num,
+                    });
+                  }}>
+                  <Feather name={"plus-circle"} size={35} color='grey' />
+                </TouchableOpacity>)}
             </View>
           ) : (
               <View style={{ marginTop: '70%', alignItems: 'center' }}>

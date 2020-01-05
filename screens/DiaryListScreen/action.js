@@ -1,4 +1,4 @@
-  
+
 import React, { Component } from "react";
 import DiaryListScreen from "./screen";
 
@@ -37,6 +37,10 @@ class Action extends Component {
     />;
   }
 
+  componentDidMount = async () => {
+    const { today } = this.props
+    this.setState({selectedDay: today});
+  }
   // 일기 리스트 업데이트 
   _refresh = async () => {
     const { getDiarylist } = this.props;
@@ -55,8 +59,8 @@ class Action extends Component {
   // 선택된 날짜 받아오기 
   selectedDate = (selected) => {
     const { today } = this.props;
-    console.log("date : ", selected, today );
-    this.setState({ selectedDay : selected });
+    console.log("date : ", selected, today);
+    this.setState({ selectedDay: selected });
   }
 
 }
