@@ -19,17 +19,19 @@ const { width, height } = Dimensions.get("window");
 
 const DiaryboxScreen = props => (
   <View style={styles.container}>
-    <SearchBox/>
+    <View style={{flex:1}}> 
+      <SearchBox />
+    </View>
     {props.myDiary.length === 0 ? (
       <>
         <Card containerStyle={{
           borderRadius: 5,
           borderWidth: 3,
           borderStyle: 'dashed',
-          width: width/1.2,
-          height: height/2
+          width: width / 1.2,
+          height: height / 2
         }}>
-          <View style={{ alignItems:'center', justifyContent:'center' , paddingTop: '40%'}}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '40%' }}>
             <Text style={styles.titleFont}>일기장을 생성 하세요!</Text>
             <TouchableOpacity
               style={{ paddingTop: 10 }}
@@ -44,7 +46,7 @@ const DiaryboxScreen = props => (
         <>
           {props.myDiary.length !== 0 ? (
             <>
-              <View style={{ flex: 1 }} >
+              <View style={{ flex: 3}} >
                 <FlatList
                   contentContainerStyle={{ alignItems: 'center' }}
                   horizontal={true}
@@ -60,9 +62,11 @@ const DiaryboxScreen = props => (
               </View>
             </>
           ) : null}
-          <TouchableOpacity onPressOut={props.toggleModal} style={{marginBottom:5}}>
+          <View style={{ flex: 1, justifyContent: 'flex-end', marginBottom: '5%' }} >
+            <TouchableOpacity onPressOut={props.toggleModal}>
               <AntDesign name={"edit"} size={40} color='grey' />
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
         </>
       )}
     {props.isModalVisible ?
@@ -70,8 +74,8 @@ const DiaryboxScreen = props => (
         animationInTiming={500}
         onSwipeComplete={props.toggleModal}
       >
-        <View style={{height:height/2, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
-          <View style={{ flexDirection: 'column', height:'50%' }}>
+        <View style={{ height: height / 2, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ flexDirection: 'column', height: '50%' }}>
             <Text style={styles.modalText}>제목</Text>
             <TextInput maxLength={20}
               style={styles.modalTextInput}
@@ -88,7 +92,7 @@ const DiaryboxScreen = props => (
             />
           </View>
 
-          <View style={{ flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity onPressOut={props.toggleModal}
               style={styles.modalbutton}
             >
@@ -127,8 +131,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
     marginBottom: 30,
-    marginRight:50,
-    marginLeft:50
+    marginRight: 50,
+    marginLeft: 50
   },
   modalTextInput: {
     width: 250,

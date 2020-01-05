@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
-import TabsNavigation from "./TabsNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import WritingDiaryScreen from "../screens/WritingDiaryScreen";
 import DiaryListScreen from "../screens/DiaryListScreen";
 import { TouchableOpacity, View, Text } from "react-native";
 import styled from "styled-components/native";
 import DiaryContentScreen from "../screens/DiaryContentScreen";
+import DiaryBox from "../screens/DiaryBoxScreen";
 
 const RootNavigation = createStackNavigator(
   {
     Tabs: {
-      screen: TabsNavigation,
+      screen:DiaryBox,
       navigationOptions: props => ({
         title: "MY DIARY",
         headerRight: (

@@ -26,7 +26,7 @@ const SearchBox = props => (
 )
 
 const SearchView = styled.View`
-    marginTop:20
+    marginTop:10%
     alignItems:center
     flexDirection: row
 `;
