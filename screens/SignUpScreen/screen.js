@@ -59,8 +59,9 @@ const Header = styled.View`
 `;
 
 const Signup = styled.Text`
-  font-size: 50;
-  color: grey;
+font-size: 45;
+fontWeight: bold;
+color: #273c75;
 `;
 
 const Form = styled.View`
@@ -84,8 +85,9 @@ const TouchableOpacity = styled.TouchableOpacity`
 
 const BtnText = styled.Text`
   text-align: center;
-  font-weight: bold;
   color: grey;
+  fontWeight: bold;
+  font-size:15;
 `;
 
 export default SignupScreen;
