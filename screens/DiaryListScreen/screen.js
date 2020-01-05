@@ -8,7 +8,9 @@ import {
   Dimensions
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { Card } from "react-native-elements";
 import Calender from "../../components/Calendar";
+import { AntDesign } from "@expo/vector-icons";
 
 
 const { width, height } = Dimensions.get("window");
@@ -55,14 +57,33 @@ const DiaryListScreen = props => (
     ) : (
         <View style={{ alignItems: 'center' }}>
           {props.selectedDay === props.today ? (
-            <TouchableOpacity
-              onPressOut={() => {
-                props.navigation.navigate("WritingScreen", {
-                  diary_num: props.diary_num,
-                });
+            <View>
+              {props.diaryList.length === 0 ? (
+              <Card containerStyle={{
+                borderRadius: 5,
+                borderWidth: 3,
+                borderStyle: 'dashed',
+                width: width / 1.2,
+                height: height / 2
               }}>
-              <Feather name={"plus-circle"} size={35} color='grey' />
-            </TouchableOpacity>
+                <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '40%' }}>
+                  <Text style={styles.titleFont}>오늘의 일기를 작성해보세요</Text>
+                  <TouchableOpacity
+                    style={{ paddingTop: 10 }}
+                    onPressOut={props.toggleModal}
+                  >
+                    <AntDesign name={"edit"} size={50} color='grey' />
+                  </TouchableOpacity>
+                </View>
+              </Card> ) : ( <TouchableOpacity
+                onPressOut={() => {
+                  props.navigation.navigate("WritingScreen", {
+                    diary_num: props.diary_num,
+                  });
+                }}>
+                <Feather name={"plus-circle"} size={35} color='grey' />
+              </TouchableOpacity>)}
+            </View>
           ) : (
               <View style={{ marginTop: '70%', alignItems: 'center' }}>
                 <Text>아직 작성할 수 없습니다</Text>
