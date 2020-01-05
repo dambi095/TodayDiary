@@ -58,8 +58,6 @@ class Action extends Component {
 
   // 선택된 날짜 받아오기 
   selectedDate = (selected) => {
-    const { today } = this.props;
-    console.log("date : ", selected, today);
     this.setState({ selectedDay: selected });
   }
 

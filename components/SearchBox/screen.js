@@ -37,6 +37,7 @@ const TextInput = styled.TextInput`
     marginBottom: 2
     marginRight: 5
     borderBottomWidth:1
+    borderColor:grey
     height:30
     paddingLeft:10%
     marginBottom: 5

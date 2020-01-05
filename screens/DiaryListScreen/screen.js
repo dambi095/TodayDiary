@@ -68,6 +68,7 @@ const DiaryListScreen = props => (
                   marginTop: '20%'
                 }}>
                   <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '40%' }}>
+                    <Text style={{ color: "#2f3640", fontWeight: '400', marginBottom:10 }}>{props.selectedDay} </Text>
                     <Text style={styles.addFont}>오늘의 일기를 추가하세요!</Text>
                     <Text style={{ color: "#2f3640", fontWeight: '400' }}>최대 5개까지 작성 가능해요</Text>
                     <TouchableOpacity
