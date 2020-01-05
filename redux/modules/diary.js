@@ -369,6 +369,44 @@ function updateDiaryContents(diary_num, page_num, title, contents, image, write_
     }
 }
 
+// 다이어리 제목으로 검색하기 
+function searchDiaryTitle (diary_title) {
+    console.log("diary_title: " , diary_title);
+    return (dispatch, getState) => {
+        const {
+            user: {
+                profile: { email },
+                token
+            }
+        } = getState();
+
+        return fetch(`${API_URL}/diary/searchDiaryTitle`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                email,
+                diary_title
+            })
+        })
+            .then(response => {
+                if (response.status === 403) {
+                    dispatch(userActions.logOut());
+                } else {
+                    return response.json();
+                }
+            })
+            .then(async (data) => {
+                if(data) {
+                    console.log("검색 후 가져온 데이터 : " , data)
+                    dispatch(setDiary(data));
+                }
+            })
+    }
+}
+
 const initialState = {
     myDiary: [],
     diaryList: [],
@@ -422,7 +460,8 @@ const actionCreators = {
     deleteDiary,
     deleteDiaryContents,
     updateDiaryInfo,
-    updateDiaryContents
+    updateDiaryContents,
+    searchDiaryTitle
 };
 
 export { actionCreators };

@@ -10,6 +10,7 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import PropTypes from "prop-types";
 import DiaryBox from "../../components/DiaryBox";
+import SearchBox from "../../components/SearchBox";
 import Modal from 'react-native-modal';
 import { TextInput } from "react-native-gesture-handler";
 import { Card } from "react-native-elements";
@@ -18,6 +19,7 @@ const { width, height } = Dimensions.get("window");
 
 const DiaryboxScreen = props => (
   <View style={styles.container}>
+    <SearchBox/>
     {props.myDiary.length === 0 ? (
       <>
         <Card containerStyle={{
