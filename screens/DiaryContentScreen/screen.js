@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import OptionsMenu from "react-native-options-menu";
+import styled from "styled-components/native";
 const MoreIcon = require("../../assets/icon_receiptpay.png");
 
 const { width, height } = Dimensions.get("window");
@@ -32,30 +33,42 @@ const DiaryContentScreen = props => (
             {props.diaryContent[0].image !== null ? (
                 <View>
                     {props.diaryContent[0].image &&
-                        <Image source={{ uri: props.diaryContent[0].image }} resizeMode="stretch" style={{ width: width, height: height / 3 }} />}
+                        <Image source={{ uri: props.diaryContent[0].image }} resizeMode="stretch" style={{ width: width, height: height / 3, marginBottom:10}} />}
                 </View>
             ) : null}
             <View>
-                <Text>{props.diaryContent[0].contents}</Text>
+                <ContentText>{props.diaryContent[0].contents}</ContentText>
             </View>
         </View>
     </View>
 );
 
+
+const ContentText = styled.Text`
+  marginRight: 5;
+  color: #2f3640;
+  fontWeight: bold;
+  fontSize:18
+`;
+
+
 const styles = StyleSheet.create({
     main: {
         flex: 1,
         paddingBottom: 1,
-        alignItems: 'stretch',
+        alignItems: 'stretch'
     },
     titleFont: {
         fontSize: 22,
         fontWeight: 'bold',
-        marginBottom: 5
+        marginBottom: 5,
+        color: '#2f3640',
+        marginLeft:2
     },
     font: {
         fontSize: 15,
-        fontWeight: '200'
+        fontWeight: '500',
+        color: '#2f3640'
     },
     button: {
         width: '50%',
@@ -67,9 +80,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     lineStyle: {
-        backgroundColor: 'grey',
-        height: 1,
-        width: '95%',
+        backgroundColor: '#f5f6fa',
+        height: 1.5,
+        width:width,
         marginBottom: 5,
     }
 })

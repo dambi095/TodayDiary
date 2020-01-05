@@ -100,8 +100,8 @@ class Action extends Component {
 
     // 컨텐츠 수정 시 
     _changeContent = async () => {
-        const { updateDiaryContents } = this.props;
-        const result = updateDiaryContents(this.state.diary_num, this.state.page_num, this.state.title, this.state.contents, this.state.image);
+        const { updateDiaryContents, diaryContent } = this.props;
+        const result = updateDiaryContents(this.state.diary_num, this.state.page_num, this.state.title, this.state.contents, this.state.image,  diaryContent[0].write_date);
 
         if (this.state.title !== "" && this.state.contents !== "") {
             if (result) {
