@@ -68,7 +68,8 @@ const DiaryListScreen = props => (
                   marginTop: '20%'
                 }}>
                   <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '40%' }}>
-                    <Text style={styles.addFont}>오늘의 일기를 추가하세요! 최대 5개 까지 작성할 수 있습니다</Text>
+                    <Text style={styles.addFont}>오늘의 일기를 추가하세요!</Text>
+                    <Text style={{ color: "#2f3640", fontWeight: '400' }}>최대 5개까지 작성 가능해요</Text>
                     <TouchableOpacity
                       style={{ paddingTop: 10 }}
                       onPressOut={() => {
@@ -80,7 +81,7 @@ const DiaryListScreen = props => (
                     </TouchableOpacity>
 
                   </View>
-                </Card> ) : (<TouchableOpacity
+                </Card>) : (<TouchableOpacity
                   onPressOut={() => {
                     props.navigation.navigate("WritingScreen", {
                       diary_num: props.diary_num,
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     color: '#263238',
   },
   addFont: {
-    color: 'grey', fontWeight: 'bold', fontSize: 18
+    color: 'grey', fontWeight: 'bold', fontSize: 18, marginBottom: 10
   }
 })
 
