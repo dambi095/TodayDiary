@@ -54,6 +54,7 @@ function getDiary() {
                 }
             })
             .then(data => {
+                console.log("******* date ", data);
                 dispatch(setDiary(data));
             })
             .catch(e => e);

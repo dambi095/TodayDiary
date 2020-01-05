@@ -4,8 +4,10 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   FlatList,
-  Dimensions
+  Dimensions,
+  Keyboard
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import PropTypes from "prop-types";
@@ -19,34 +21,36 @@ const { width, height } = Dimensions.get("window");
 
 const DiaryboxScreen = props => (
   <View style={styles.container}>
-    <View style={{flex:1}}> 
+    <View style={{ flex: 1 }}>
       <SearchBox />
     </View>
     {props.myDiary.length === 0 ? (
       <>
-        <Card containerStyle={{
-          borderRadius: 5,
-          borderWidth: 3,
-          borderStyle: 'dashed',
-          width: width / 1.2,
-          height: height / 2
-        }}>
-          <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '40%' }}>
-            <Text style={styles.titleFont}>일기장을 생성 하세요!</Text>
-            <TouchableOpacity
-              style={{ paddingTop: 10 }}
-              onPressOut={props.toggleModal}
-            >
-              <AntDesign name={"edit"} size={50} color='grey' />
-            </TouchableOpacity>
-          </View>
-        </Card>
+        <View style={{ flex: 5 }}>
+          <Card containerStyle={{
+            borderRadius: 5,
+            borderWidth: 3,
+            borderStyle: 'dashed',
+            width: width / 1.2,
+            height: height / 2
+          }}>
+            <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: '40%' }}>
+              <Text style={styles.titleFont}>일기장을 생성 하세요!</Text>
+              <TouchableOpacity
+                style={{ paddingTop: 10 }}
+                onPressOut={props.toggleModal}
+              >
+                <AntDesign name={"edit"} size={50} color='grey' />
+              </TouchableOpacity>
+            </View>
+          </Card>
+        </View>
       </>
     ) : (
         <>
           {props.myDiary.length !== 0 ? (
             <>
-              <View style={{ flex: 3}} >
+              <View style={{ flex: 3 }} >
                 <FlatList
                   contentContainerStyle={{ alignItems: 'center' }}
                   horizontal={true}
@@ -74,6 +78,8 @@ const DiaryboxScreen = props => (
         animationInTiming={500}
         onSwipeComplete={props.toggleModal}
       >
+
+  <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
         <View style={{ height: height / 2, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
           <View style={{ flexDirection: 'column', height: '50%' }}>
             <Text style={styles.modalText}>제목</Text>
@@ -113,6 +119,7 @@ const DiaryboxScreen = props => (
             }
           </View>
         </View>
+        </TouchableWithoutFeedback>
       </Modal>
       : null}
   </View>
