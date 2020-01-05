@@ -12,10 +12,10 @@ const DiaryContentScreen = props => (
         <View style={{ marginTop: 10 }}>
             <Text style={styles.titleFont}>제목 : {props.diaryContent[0].title}</Text>
             <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                <Text style={styles.font}> {props.diaryContent[0].write_date.substring(0, 10)} </Text>
+                <Text style={styles.font}> {props.username}, {props.diaryContent[0].write_date.substring(0, 10)} 작성</Text>
                 <OptionsMenu
                     button={MoreIcon}
-                    buttonStyle={{ width: 20, height: 20, resizeMode: "contain" }}
+                    buttonStyle={{ width: 20, height: 20, resizeMode: "contain" , marginLeft:10}}
                     options={["수정", "삭제", "취소"]}
                     actions={[() => {
                         props.navigation.navigate("WritingScreen", {
@@ -59,15 +59,16 @@ const styles = StyleSheet.create({
     },
     titleFont: {
         fontSize: 22,
-        fontWeight: 'bold',
+        fontWeight: '600',
         marginBottom: 5,
         color: '#2f3640',
         marginLeft:2
     },
     font: {
         fontSize: 15,
-        fontWeight: '500',
-        color: '#2f3640'
+        fontWeight: '400',
+        color: '#2f3640',
+        marginTop:1
     },
     button: {
         width: '50%',
