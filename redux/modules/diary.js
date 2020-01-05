@@ -371,7 +371,6 @@ function updateDiaryContents(diary_num, page_num, title, contents, image, write_
 
 // 다이어리 제목으로 검색하기 
 function searchDiaryTitle (diary_title) {
-    console.log("diary_title: " , diary_title);
     return (dispatch, getState) => {
         const {
             user: {
@@ -399,9 +398,11 @@ function searchDiaryTitle (diary_title) {
                 }
             })
             .then(async (data) => {
-                if(data) {
-                    console.log("검색 후 가져온 데이터 : " , data)
+                if(data.length !== 0) {
                     dispatch(setDiary(data));
+                    return data.length
+                } else {
+                    return 0
                 }
             })
     }

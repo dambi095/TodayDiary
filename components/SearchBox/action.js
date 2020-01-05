@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import SearchBox from "./screen";
-
+import { Alert } from "react-native";
 class Action extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            searchValue: ""
+            searchValue: "",
+            diaryLength: "",
+            search: false
         }
     }
 
-    componentDidMount = async () => {}
+    componentDidMount = async () => { }
 
     render() {
         return <SearchBox
@@ -22,16 +24,24 @@ class Action extends Component {
         />
     }
 
-    changeSearchValue = async(text) => {
+    changeSearchValue = (text) => {
         this.setState({
             searchValue: text
         })
     }
 
-    searchDiaryTitle = () => {
+    searchDiaryTitle = async () => {
         const { searchDiaryTitle } = this.props;
-        searchDiaryTitle(this.state.searchValue); 
+        const result = await searchDiaryTitle(this.state.searchValue);
+        if (result == 0) {
+            Alert.alert("검색 결과가 없습니다");
+            this.setState({ diaryLength: result , search: false })
+        } else {
+            this.setState({ diaryLength: result , search: true })
+        }
+        this.setState({ searchValue: ""});
     }
+
 
 }
 
